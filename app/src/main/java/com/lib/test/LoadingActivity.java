@@ -39,28 +39,28 @@ public class LoadingActivity extends Activity implements DataLoadingLayout.OnVie
     private void getData(int is) {
         mLoadingLayout.loading();
 
-        LThreadService.run(new IThreadService<Integer>() {
-            @Override
-            public Integer runOnThread() {
-                try {
-                    Thread.sleep(3000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                return is;
-            }
-
-            @Override
-            public void runOnMainThread(Integer aBoolean) {
-                if (aBoolean == 1) {
-                    mLoadingLayout.loadSuccess("加载成功");
-                } else if (aBoolean == 2) {
-                    mLoadingLayout.loadError("空数据");
-                } else {
-                    mLoadingLayout.loadError("加载失败");
-                }
-            }
-        });
+//        LThreadService.run(new IThreadService<Integer>() {
+//            @Override
+//            public Integer runOnThread() {
+//                try {
+//                    Thread.sleep(3000);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//                return is;
+//            }
+//
+//            @Override
+//            public void runOnMainThread(Integer aBoolean) {
+//                if (aBoolean == 1) {
+//                    mLoadingLayout.loadSuccess("加载成功");
+//                } else if (aBoolean == 2) {
+//                    mLoadingLayout.loadError("空数据");
+//                } else {
+//                    mLoadingLayout.loadError("加载失败");
+//                }
+//            }
+//        });
     }
 
     public void tv1(View v) {

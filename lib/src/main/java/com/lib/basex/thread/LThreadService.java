@@ -1,8 +1,24 @@
 package com.lib.basex.thread;
 
+import android.annotation.SuppressLint;
 import android.os.Handler;
 
 import androidx.annotation.NonNull;
+
+import com.lib.basex.utils.LUtils;
+import com.lib.basex.utils.Logger;
+
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Observer;
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * @author Alan
@@ -11,13 +27,6 @@ import androidx.annotation.NonNull;
  */
 public class LThreadService {
 
-    private static Handler handler;
-
-    public static void register(Handler handler) {
-        LThreadService.handler = handler;
-
-    }
-
     /**
      * 主线程 与子线程 交互
      *
@@ -25,10 +34,16 @@ public class LThreadService {
      * @param <T>
      */
     public static <T> void run(@NonNull IThreadService<T> iThreadService) {
-        new Thread(() -> {
+        Observable.create((ObservableOnSubscribe<RxCache<T>>) emitter -> {
             T t = iThreadService.runOnThread();
-            handler.post(() -> iThreadService.runOnMainThread(t));
-        }).start();
+            emitter.onNext(new RxCache<>(t));
+        }).compose(upstream -> upstream.subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread()))
+                .doOnNext(t -> iThreadService.runOnMainThread(t.t, null))
+                .onErrorReturn(throwable -> {
+                    iThreadService.runOnMainThread(null, throwable);
+                    return new RxCache<>(null);
+                }).subscribe();
     }
 
     /**
@@ -45,11 +60,13 @@ public class LThreadService {
      *
      * @param runnable
      */
+    @SuppressLint("CheckResult")
     public static void runOnMainThread(@NonNull Runnable runnable) {
-        handler.post(runnable);
+        Observable.just(1).observeOn(AndroidSchedulers.mainThread()).subscribe(integer -> runnable.run());
     }
 
+    @SuppressLint("CheckResult")
     public static void runDelay(Runnable runnable, long time) {
-        handler.postDelayed(runnable, time);
+        Observable.timer(time, TimeUnit.MILLISECONDS).observeOn(AndroidSchedulers.mainThread()).subscribe(aLong -> runnable.run());
     }
 }

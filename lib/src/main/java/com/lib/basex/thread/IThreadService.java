@@ -9,5 +9,5 @@ public interface IThreadService<T> {
 
     T runOnThread();
 
-    void runOnMainThread(T t);
+    void runOnMainThread(T t, Throwable e);
 }

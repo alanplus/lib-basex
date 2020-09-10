@@ -30,6 +30,8 @@
 	- 向上渐变移动(translateToUpAnimation)
 	- 向下渐变移动(translateToDownAnimation)
 - 线程交互工具类(LThreadService)
+- 简单数据存储(LSharedPreferences)
+- 日志打印(Logger)
 - 全局样式
 	- dialog基本样式(LXDialogStyle) 
 ### UI组件
