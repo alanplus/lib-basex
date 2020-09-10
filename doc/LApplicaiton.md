@@ -37,3 +37,40 @@ public class App extends LApplication {
 }
 ```
 
+### 监听后台拉起
+
+```java
+ /**
+ * 从后台拉到 前台
+ *
+ * @param activity
+ */
+ @Override
+ public void onForegroundListener(Activity activity) {
+
+}
+
+/**
+* 拉到后台
+*/
+@Override
+public void onBackgroundListener() {
+
+}
+```
+
+### 全局异常捕获
+
+```java
+/**
+* 捕获到异常
+*
+* @param t
+* @param e
+*/
+@Override
+public void uncaughtException(Thread t, Throwable e) {
+		Logger.error(e);
+}
+```
+
