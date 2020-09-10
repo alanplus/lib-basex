@@ -1,5 +1,10 @@
 <resources>
 
+    <style name="LAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
+    </style>
+
+
     <style name="LXDialogStyle" parent="android:style/Theme.Dialog">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowNoTitle">true</item>

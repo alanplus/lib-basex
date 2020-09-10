@@ -4,8 +4,15 @@ apply from: "config.gradle"
 
 buildscript {
     repositories {
-        google()
         jcenter()
+        mavenCentral()
+        google()
+        jcenter() {
+            url "http://jcenter.bintray.com/"
+        }
+        maven {
+            url 'https://jitpack.io'
+        }
 
     }
     dependencies {
@@ -18,8 +25,15 @@ buildscript {
 
 allprojects {
     repositories {
-        google()
         jcenter()
+        mavenCentral()
+        google()
+        jcenter() {
+            url "http://jcenter.bintray.com/"
+        }
+        maven {
+            url 'https://jitpack.io'
+        }
 
     }
 }
