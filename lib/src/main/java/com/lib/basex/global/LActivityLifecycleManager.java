@@ -20,7 +20,7 @@ public class LActivityLifecycleManager implements Application.ActivityLifecycleC
     public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
         Logger.d(activity.getClass().getName());
         if (null != onActivityListener) {
-            onActivityListener.onForegroundListener(activity);
+            onActivityListener.onCreateListener(activity);
         }
     }
 

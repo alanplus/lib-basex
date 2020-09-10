@@ -8,6 +8,7 @@ import android.app.Activity;
 
 public interface OnActivityListener {
 
+    void onCreateListener(Activity activity);
     void onForegroundListener(Activity activity);
     void onBackgroundListener();
 }

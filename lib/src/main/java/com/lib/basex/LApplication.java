@@ -106,4 +106,13 @@ public abstract class LApplication extends MultiDexApplication implements NeverC
     public void onBackgroundListener() {
 
     }
+
+    /**
+     * 创建页面
+     * @param activity
+     */
+    @Override
+    public void onCreateListener(Activity activity) {
+
+    }
 }
