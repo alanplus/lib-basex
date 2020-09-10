@@ -11,11 +11,14 @@ import com.lib.basex.thread.LThreadService;
 /**
  * @author Alan
  * 时 间：2020-09-08
- * 简 述：<功能简述>
+ * 简 述：
+ * 1. 提供全局应用实例
+ * 2. 解决65535问题
+ * 3.
  */
-public class BaseApplication extends MultiDexApplication {
+public class LApplication extends MultiDexApplication {
 
-    public BaseApplication app;
+    public static LApplication app;
     public Handler handler;
 
     @Override

@@ -12,7 +12,7 @@ import android.view.animation.TranslateAnimation;
  * 时 间：2020-08-27
  * 简 述：<功能简述>
  */
-public class LXViewAnim {
+public class LViewAnim {
 
     /**
      * 向上渐变移动

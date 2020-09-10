@@ -1,6 +1,5 @@
 package com.lib.basex.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -18,7 +17,7 @@ import com.lib.basex.utils.LClassUtils;
  * 时 间：2020-09-09
  * 简 述：<功能简述>
  */
-public abstract class LBaseActivity<T extends ViewModel, D extends ViewDataBinding> extends AppCompatActivity {
+public abstract class LActivity<T extends ViewModel, D extends ViewDataBinding> extends AppCompatActivity {
 
     protected T t;
     protected D d;

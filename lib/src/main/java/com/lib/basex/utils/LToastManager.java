@@ -12,17 +12,17 @@ import com.lib.basex.R;
  * 时 间：2020-08-13
  * 简 述：<功能简述>
  */
-public class LXToastManager {
+public class LToastManager {
 
     private Toast mToast;
-    private static LXToastManager manager;
+    private static LToastManager manager;
 
-    private LXToastManager() {
+    private LToastManager() {
     }
 
-    public static LXToastManager getInstance() {
+    public static LToastManager getInstance() {
         if (null == manager) {
-            manager = new LXToastManager();
+            manager = new LToastManager();
         }
 
         return manager;

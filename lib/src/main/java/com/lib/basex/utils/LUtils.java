@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * Created by Mouse on 2018/10/15.
  */
-public class LXUtils {
+public class LUtils {
 
     /**
      * dp转px

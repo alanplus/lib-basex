@@ -12,6 +12,8 @@ ext {
             appcompatExt : "androidx.lifecycle:lifecycle-extensions:2.2.0",
             multidex            : 'com.android.support:multidex:1.0.3',
 
+            basex               : 'com.github.alanplus:lib-basex:0.1',
+
             glide               : "com.github.bumptech.glide:glide:3.7.0",
             eventbus            : "org.greenrobot:eventbus:3.0.0",
             rxjava              : "io.reactivex.rxjava2:rxjava:2.0.2",
@@ -53,7 +55,5 @@ ext {
             umengAnalytics      : "com.umeng.sdk:analytics:7.4.4",
             //微信库
             wechat              : "com.tencent.mm.opensdk:wechat-sdk-android-without-mta:5.5.8"
-
-
     ]
 }
