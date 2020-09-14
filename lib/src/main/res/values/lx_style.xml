@@ -1,7 +1,8 @@
 <resources>
 
     <style name="LAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-
+        <item name="l_status_bar_bg_color">@android:color/white</item>
+        <item name="l_status_bar_text_is_white">false</item>
     </style>
 
 
@@ -13,5 +14,8 @@
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>
+
+    <attr name="l_status_bar_bg_color" format="color" />
+    <attr name="l_status_bar_text_is_white" format="boolean" />
 
 </resources>

@@ -8,4 +8,8 @@ import com.lib.basex.LApplication;
  * 简 述：<功能简述>
  */
 public class App extends LApplication {
+    @Override
+    public void init() {
+
+    }
 }

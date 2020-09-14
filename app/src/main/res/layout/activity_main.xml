@@ -1,60 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <ScrollView
+    <data>
+
+        <variable
+            name="vm"
+            type="com.lib.test.AViewModel" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:background="@{vm.color}"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+
+        <TextView
+            android:id="@+id/abc"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="20dp"
-                android:onClick="toLeak"
-                android:text="Hello World!" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="20dp"
-                android:onClick="getData"
-                android:text="Hello World!" />
-
-            <com.sackcentury.shinebuttonlib.ShineButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@android:color/darker_gray"
-                android:id="@+id/po_image2"
-                app:btn_color="@android:color/darker_gray"
-                app:btn_fill_color="@android:color/holo_green_dark"
-                app:allow_random_color="false"
-                app:siShape="@raw/smile"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="20dp"
-                android:onClick="toLoad"
-                android:text="Hello World!" />
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/darker_gray"
+            android:onClick="@{()->vm.click()}"
+            android:text="@{vm.arrayMap.name}" />
 
 
-        </LinearLayout>
+    </LinearLayout>
 
-
-    </ScrollView>
-
-
-</LinearLayout>
+</layout>

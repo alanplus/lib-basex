@@ -57,6 +57,15 @@ public class App extends LApplication {
 public void onBackgroundListener() {
 
 }
+
+/**
+ * 创建页面
+ * @param activity
+ */
+@Override
+public void onCreateListener(Activity activity) {
+
+}
 ```
 
 ### 全局异常捕获

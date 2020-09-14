@@ -26,33 +26,12 @@ public class LUtils {
     /**
      * dp转px
      *
-     * @param context
-     * @param dpValue
-     * @return
-     */
-    public static int dip2px(Context context, float dpValue) {
-        final float scale = context.getResources().getDisplayMetrics().density;
-        return (int) (dpValue * scale + 0.5f);
-    }
-
-    /**
-     * dp转px
-     *
      * @param dpValue
      * @return
      */
     public static int dip2px(float dpValue) {
         final float scale = Resources.getSystem().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
-    }
-
-
-    /**
-     * 根据手机的分辨率 px(像素) 转 dp
-     */
-    public static int px2dip(Context context, float pxValue) {
-        final float scale = context.getResources().getDisplayMetrics().density;
-        return (int) (pxValue / scale + 0.5f);
     }
 
     /**
