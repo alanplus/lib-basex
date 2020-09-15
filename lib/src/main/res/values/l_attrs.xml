@@ -1,6 +1,12 @@
 <resources>
 
+    <attr name="l_theme_color" format="color" />
+
+    <!-- 状态栏 颜色 字体大小 -->
+    <attr name="l_status_bar_bg_color" format="color" />
+    <attr name="l_status_bar_text_is_white" format="boolean" />
+
     <!-- 主界面 底部tab 配置 -->
-    <attr name="home_tab_menu" format="reference" />
-    <attr name="menu_item_text_color" format="color|reference" />
+    <attr name="l_home_tab_menu" format="reference" />
+    <attr name="l_menu_item_text_color" format="color|reference" />
 </resources>

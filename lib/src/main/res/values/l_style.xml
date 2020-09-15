@@ -5,8 +5,9 @@
         <item name="l_status_bar_bg_color">@android:color/white</item>
         <item name="l_status_bar_text_is_white">false</item>
         <!-- 主界面 底部tab 配置 -->
-        <item name="home_tab_menu">@menu/l_home_base_menu</item>
-        <item name="menu_item_text_color">@color/l_theme</item>
+        <item name="l_home_tab_menu">@menu/l_home_base_menu</item>
+        <item name="l_menu_item_text_color">@color/l_home_tab_text_color</item>
+        <item name="l_theme_color">@color/l_theme</item>
 
     </style>
 
@@ -20,7 +21,6 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
-    <attr name="l_status_bar_bg_color" format="color" />
-    <attr name="l_status_bar_text_is_white" format="boolean" />
+
 
 </resources>
