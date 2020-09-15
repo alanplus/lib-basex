@@ -9,12 +9,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 
-public class PagerFragmentAdapter<T extends Fragment> extends FragmentStatePagerAdapter {
+public class LPagerFragmentAdapter<T extends Fragment> extends FragmentStatePagerAdapter {
 
     private T[] mFragmentList;
 
-    public PagerFragmentAdapter(@NonNull FragmentManager fm, T[] mFragments) {
-        super(fm);
+    public LPagerFragmentAdapter(@NonNull FragmentManager fm, T[] mFragments) {
+        super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         mFragmentList = mFragments;
     }
 
@@ -47,6 +47,6 @@ public class PagerFragmentAdapter<T extends Fragment> extends FragmentStatePager
 
     @Override
     public int getItemPosition(@NonNull Object object) {
-        return PagerFragmentAdapter.POSITION_NONE;
+        return LPagerFragmentAdapter.POSITION_NONE;
     }
 }

@@ -43,6 +43,11 @@ public class MainActivity extends LActivity<AViewModel, ActivityMainBinding> {
         return R.layout.activity_main;
     }
 
+    @Override
+    public void initView() {
+
+    }
+
 
     public void toLeak(View view) {
         Intent intent = new Intent();

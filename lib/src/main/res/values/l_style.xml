@@ -1,8 +1,13 @@
 <resources>
 
     <style name="LAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--状态栏配置 -->
         <item name="l_status_bar_bg_color">@android:color/white</item>
         <item name="l_status_bar_text_is_white">false</item>
+        <!-- 主界面 底部tab 配置 -->
+        <item name="home_tab_menu">@menu/l_home_base_menu</item>
+        <item name="menu_item_text_color">@color/l_theme</item>
+
     </style>
 
 

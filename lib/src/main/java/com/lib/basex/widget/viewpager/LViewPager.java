@@ -6,14 +6,14 @@ import android.view.MotionEvent;
 
 import androidx.viewpager.widget.ViewPager;
 
-public class LXViewPager extends ViewPager {
+public class LViewPager extends ViewPager {
     private boolean isScrollable = true;
 
-    public LXViewPager(Context context, AttributeSet attrs) {
+    public LViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public LXViewPager(Context context) {
+    public LViewPager(Context context) {
         super(context);
     }
 
@@ -38,5 +38,9 @@ public class LXViewPager extends ViewPager {
 
     public void setScrollable(boolean scrollable) {
         isScrollable = scrollable;
+    }
+
+    public boolean isScrollable() {
+        return isScrollable;
     }
 }

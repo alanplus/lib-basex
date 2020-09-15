@@ -1,0 +1,6 @@
+<resources>
+
+    <!-- 主界面 底部tab 配置 -->
+    <attr name="home_tab_menu" format="reference" />
+    <attr name="menu_item_text_color" format="color|reference" />
+</resources>

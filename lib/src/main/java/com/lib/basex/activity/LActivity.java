@@ -1,10 +1,12 @@
 package com.lib.basex.activity;
 
+import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
+import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewbinding.ViewBinding;
 
@@ -32,12 +34,17 @@ public abstract class LActivity<T extends LViewModel, D extends ViewDataBinding>
         setContentView(getContentId());
         initStatusBar();
         d = DataBindingUtil.setContentView(this, getContentId());
-        t = (T) new ViewModelProvider(this).get(LClassUtils.getTClassObject(this));
+        t = (T) createViewModel();
 
         //所有布局中dababinding对象变量名称都是vm
         d.setVariable(BR.vm, t);
         d.executePendingBindings();//立即更新UI
         getLifecycle().addObserver(t);
+        initView();
+    }
+
+    protected ViewModel createViewModel() {
+        return new ViewModelProvider(this).get(LClassUtils.getTClassObject(this));
     }
 
     protected void initStatusBar() {
@@ -47,4 +54,10 @@ public abstract class LActivity<T extends LViewModel, D extends ViewDataBinding>
     }
 
     public abstract int getContentId();
+
+    public abstract void initView();
+
+    public Activity getActivity() {
+        return this;
+    }
 }
