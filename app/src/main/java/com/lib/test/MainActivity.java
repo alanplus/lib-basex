@@ -21,22 +21,6 @@ import com.lib.test.databinding.ActivityMainBinding;
 
 public class MainActivity extends LActivity<AViewModel, ActivityMainBinding> {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-//        ActivityMainBinding inflate = ActivityMainBinding.inflate(LayoutInflater.from(this));
-//        LinearLayout content = inflate.content;
-//        TextView abc = inflate.abc;
-
-        d.content.setBackgroundColor(Color.BLUE);
-        d.content.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                t.arrayMap.put("name","abac");
-            }
-        },3000);
-
-    }
 
     @Override
     public int getContentId() {
@@ -45,7 +29,14 @@ public class MainActivity extends LActivity<AViewModel, ActivityMainBinding> {
 
     @Override
     public void initView() {
-
+        d.content.setBackgroundColor(Color.BLUE);
+        d.content.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                t.arrayMap.put("name", "abac");
+                startActivity(LoadingActivity.class);
+            }
+        }, 3000);
     }
 
 

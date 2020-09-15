@@ -19,7 +19,8 @@ public class LClassUtils {
             Type genericSuperclass = aClass.getGenericSuperclass();
             Type[] types = ((ParameterizedType) genericSuperclass).getActualTypeArguments();
             return (Class) types[0];
-        } catch (Exception ignore) {
+        } catch (Exception e) {
+            Logger.error(e);
 
         }
         return null;

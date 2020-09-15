@@ -1,6 +1,7 @@
 package com.lib.basex.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -44,7 +45,11 @@ public abstract class LActivity<T extends LViewModel, D extends ViewDataBinding>
     }
 
     protected ViewModel createViewModel() {
-        return new ViewModelProvider(this).get(LClassUtils.getTClassObject(this));
+        return createViewModel(LClassUtils.getTClassObject(this));
+    }
+
+    protected ViewModel createViewModel(Class<? extends LViewModel> clazz) {
+        return new ViewModelProvider(this).get(clazz);
     }
 
     protected void initStatusBar() {
@@ -59,5 +64,11 @@ public abstract class LActivity<T extends LViewModel, D extends ViewDataBinding>
 
     public Activity getActivity() {
         return this;
+    }
+
+    public void startActivity(Class<? extends Activity> clazz) {
+        Intent intent = new Intent();
+        intent.setClass(this, clazz);
+        startActivity(intent);
     }
 }

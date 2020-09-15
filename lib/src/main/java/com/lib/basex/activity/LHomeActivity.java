@@ -14,6 +14,7 @@ import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.ViewModel;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
@@ -49,6 +50,11 @@ public abstract class LHomeActivity extends LActivity<LViewModel, LActivityHomeB
         d.bvHomeNavigation.setItemHorizontalTranslationEnabled(true);
         mMsgHitView = new View[getTabSize()];
         initViewPager(d.lViewPager);
+    }
+
+    @Override
+    protected ViewModel createViewModel() {
+        return createViewModel(LViewModel.class);
     }
 
     protected void initViewPager(LViewPager viewPager) {

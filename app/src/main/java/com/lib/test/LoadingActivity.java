@@ -5,9 +5,15 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
+import com.lib.basex.activity.LHomeActivity;
+import com.lib.basex.activity.LViewModel;
 import com.lib.basex.thread.IThreadService;
 import com.lib.basex.thread.LThreadService;
+import com.lib.basex.utils.LClassUtils;
 import com.lvleo.dataloadinglayout.DataLoadingLayout;
 
 /**
@@ -15,29 +21,29 @@ import com.lvleo.dataloadinglayout.DataLoadingLayout;
  * 时 间：2020-09-08
  * 简 述：<功能简述>
  */
-public class LoadingActivity extends Activity implements DataLoadingLayout.OnViewTouchListener {
+public class LoadingActivity extends LHomeActivity {
 
-    private DataLoadingLayout mLoadingLayout;
+//    private DataLoadingLayout mLoadingLayout;
+//
+//    @Override
+//    protected void onCreate(@Nullable Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_test_loading);
+//        mLoadingLayout = findViewById(R.id.loading_layout);
+//        mLoadingLayout.setDataView(findViewById(R.id.tv_test4));
+//        findViewById(R.id.tv_test1).setOnClickListener(v -> tv1(v));
+//        findViewById(R.id.tv_test2).setOnClickListener(v -> tv2(v));
+//        findViewById(R.id.tv_test3).setOnClickListener(v -> tv3(v));
+//    }
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test_loading);
-        mLoadingLayout = findViewById(R.id.loading_layout);
-        mLoadingLayout.setDataView(findViewById(R.id.tv_test4));
-        findViewById(R.id.tv_test1).setOnClickListener(v -> tv1(v));
-        findViewById(R.id.tv_test2).setOnClickListener(v -> tv2(v));
-        findViewById(R.id.tv_test3).setOnClickListener(v -> tv3(v));
-    }
-
-    @Override
-    public void onTouchUp() {
-        // if data load Error or data is empty, can get data again by touch the view
-        getData(1);
-    }
-
-    private void getData(int is) {
-        mLoadingLayout.loading();
+//    @Override
+//    public void onTouchUp() {
+//        // if data load Error or data is empty, can get data again by touch the view
+//        getData(1);
+//    }
+//
+//    private void getData(int is) {
+//        mLoadingLayout.loading();
 
 //        LThreadService.run(new IThreadService<Integer>() {
 //            @Override
@@ -61,17 +67,27 @@ public class LoadingActivity extends Activity implements DataLoadingLayout.OnVie
 //                }
 //            }
 //        });
+//}
+//
+//    public void tv1(View v) {
+//        getData(1);
+//    }
+//
+//    public void tv2(View v) {
+//        getData(3);
+//    }
+//
+//    public void tv3(View v) {
+//        getData(2);
+//    }
+
+    @Override
+    protected Fragment[] getFragmentArray() {
+        return new Fragment[0];
     }
 
-    public void tv1(View v) {
-        getData(1);
-    }
-
-    public void tv2(View v) {
-        getData(3);
-    }
-
-    public void tv3(View v) {
-        getData(2);
+    @Override
+    protected ViewModel createViewModel() {
+        return new ViewModelProvider(this).get(LViewModel.class);
     }
 }
