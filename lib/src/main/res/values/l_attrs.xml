@@ -9,4 +9,35 @@
     <!-- 主界面 底部tab 配置 -->
     <attr name="l_home_tab_menu" format="reference" />
     <attr name="l_menu_item_text_color" format="color|reference" />
+
+    <declare-styleable name="LBannerLayoutStyle">
+        <attr name="l_selectedIndicatorColor" format="color|reference" />
+        <attr name="l_unSelectedIndicatorColor" format="color|reference" />
+        <attr name="l_indicatorShape" format="enum">
+            <enum name="rect" value="0" />
+            <enum name="oval" value="1" />
+        </attr>
+
+        <attr name="l_selectedIndicatorHeight" format="dimension|reference" />
+        <attr name="l_selectedIndicatorWidth" format="dimension|reference" />
+
+        <attr name="l_unSelectedIndicatorHeight" format="dimension|reference" />
+        <attr name="unSelectedIndicatorWidth" format="dimension|reference" />
+
+        <attr name="l_indicatorPosition" format="enum">
+            <enum name="centerBottom" value="0" />
+            <enum name="rightBottom" value="1" />
+            <enum name="leftBottom" value="2" />
+            <enum name="centerTop" value="3" />
+            <enum name="rightTop" value="4" />
+            <enum name="leftTop" value="5" />
+        </attr>
+
+        <attr name="l_indicatorSpace" format="dimension|reference" />
+        <attr name="l_indicatorMargin" format="dimension|reference" />
+        <attr name="l_autoPlayDuration" format="integer|reference" />
+        <attr name="l_scrollDuration" format="integer|reference" />
+        <attr name="l_isAutoPlay" format="boolean" />
+        <attr name="l_defaultImage" format="integer|reference" />
+    </declare-styleable>
 </resources>
