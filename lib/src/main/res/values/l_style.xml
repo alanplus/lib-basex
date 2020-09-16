@@ -7,8 +7,8 @@
         <!-- 主界面 底部tab 配置 -->
         <item name="l_home_tab_menu">@menu/l_home_base_menu</item>
         <item name="l_menu_item_text_color">@color/l_home_tab_text_color</item>
+        <!-- 主题色 -->
         <item name="l_theme_color">@color/l_theme</item>
-
     </style>
 
 
@@ -20,7 +20,6 @@
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>
-
 
 
 </resources>
