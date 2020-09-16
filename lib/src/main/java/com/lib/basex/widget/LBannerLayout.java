@@ -123,7 +123,7 @@ public class LBannerLayout extends RelativeLayout {
         selectedIndicatorHeight = (int) array.getDimension(R.styleable.LBannerLayoutStyle_l_selectedIndicatorHeight, selectedIndicatorHeight);
         selectedIndicatorWidth = (int) array.getDimension(R.styleable.LBannerLayoutStyle_l_selectedIndicatorWidth, selectedIndicatorWidth);
         unSelectedIndicatorHeight = (int) array.getDimension(R.styleable.LBannerLayoutStyle_l_unSelectedIndicatorHeight, unSelectedIndicatorHeight);
-        unSelectedIndicatorWidth = (int) array.getDimension(R.styleable.LBannerLayoutStyle_unSelectedIndicatorWidth, unSelectedIndicatorWidth);
+        unSelectedIndicatorWidth = (int) array.getDimension(R.styleable.LBannerLayoutStyle_l_unSelectedIndicatorWidth, unSelectedIndicatorWidth);
 
         int position = array.getInt(R.styleable.LBannerLayoutStyle_l_indicatorPosition, Position.centerBottom.ordinal());
         for (Position position1 : Position.values()) {
@@ -167,7 +167,25 @@ public class LBannerLayout extends RelativeLayout {
         selectedGradientDrawable.setSize(selectedIndicatorWidth, selectedIndicatorHeight);
         selectedLayerDrawable = new LayerDrawable(new Drawable[]{selectedGradientDrawable});
         selectedDrawable = selectedLayerDrawable;
+        addDefaultImageView();
+    }
 
+    private ImageView imageView;
+
+    private void addDefaultImageView() {
+        if (defaultImage != 0) {
+            imageView = new ImageView(getContext());
+            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+            imageView.setAdjustViewBounds(true);
+            addView(imageView, new LayoutParams(-1, -2));
+            new LImageBuilder().setRes(defaultImage).build(imageView);
+        }
+    }
+
+    public void hiddenDefaultImageView() {
+        if (null != imageView) {
+            imageView.setVisibility(View.GONE);
+        }
     }
 
     //添加本地图片路径

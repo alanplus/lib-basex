@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.lib.basex.widget.LBannerLayout
+            android:id="@+id/index_banner_layout"
+            app:l_autoPlayDuration="5000"
+            app:l_defaultImage="@drawable/bg_activity_banner"
+            app:l_indicatorMargin="10dp"
+            app:l_indicatorPosition="centerBottom"
+            app:l_indicatorShape="oval"
+            app:l_indicatorSpace="2dp"
+            app:l_scrollDuration="1000"
+            app:l_selectedIndicatorColor="#ffffff"
+            app:l_selectedIndicatorHeight="8dp"
+            app:l_selectedIndicatorWidth="8dp"
+            app:l_unSelectedIndicatorColor="#f4f4f4"
+            app:l_unSelectedIndicatorHeight="6dp"
+            app:l_unSelectedIndicatorWidth="6dp"
+            android:layout_width="match_parent"
+            android:layout_height="222dp" />
+
+    </LinearLayout>
+
+</layout>

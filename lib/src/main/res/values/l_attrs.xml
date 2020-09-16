@@ -22,7 +22,7 @@
         <attr name="l_selectedIndicatorWidth" format="dimension|reference" />
 
         <attr name="l_unSelectedIndicatorHeight" format="dimension|reference" />
-        <attr name="unSelectedIndicatorWidth" format="dimension|reference" />
+        <attr name="l_unSelectedIndicatorWidth" format="dimension|reference" />
 
         <attr name="l_indicatorPosition" format="enum">
             <enum name="centerBottom" value="0" />

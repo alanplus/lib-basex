@@ -23,7 +23,7 @@ public class LoadingActivity extends LHomeActivity {
 
     @Override
     protected Fragment[] getFragmentArray() {
-        return new Fragment[0];
+        return new Fragment[]{new AFragment()};
     }
 
     @Override
