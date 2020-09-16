@@ -29,6 +29,8 @@ public class LRefreshLayout extends SwipeRefreshLayout {
     public LRefreshLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
+        setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light, android.R.color.holo_orange_light);
     }
 
     @Override
