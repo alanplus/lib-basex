@@ -1,5 +1,7 @@
 package com.lib.basex.fragment;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.lib.basex.BR;
 import com.lib.basex.activity.LViewModel;
+import com.lib.basex.utils.LActivityUtils;
 import com.lib.basex.utils.LClassUtils;
 
 /**
@@ -25,6 +28,8 @@ public abstract class LFragment<VM extends LViewModel, D extends ViewDataBinding
 
     protected VM vm;
     protected D d;
+
+    protected Activity activity;
 
     @Nullable
     @Override
@@ -40,4 +45,14 @@ public abstract class LFragment<VM extends LViewModel, D extends ViewDataBinding
     public abstract void initView(@Nullable Bundle savedInstanceState);
 
     public abstract int getContentId();
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        activity = (Activity) context;
+    }
+
+    public void startActivity(Class<? extends Activity> clazz) {
+        LActivityUtils.startActivity(activity, clazz);
+    }
 }

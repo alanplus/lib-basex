@@ -14,6 +14,7 @@ import androidx.viewbinding.ViewBinding;
 import com.alan.lib.simple.activity.SimpleActivity;
 import com.lib.basex.BR;
 import com.lib.basex.R;
+import com.lib.basex.utils.LActivityUtils;
 import com.lib.basex.utils.LClassUtils;
 import com.lib.basex.utils.LResourceUtils;
 import com.lib.basex.utils.statusbar.LStatusBar;
@@ -67,8 +68,6 @@ public abstract class LActivity<T extends LViewModel, D extends ViewDataBinding>
     }
 
     public void startActivity(Class<? extends Activity> clazz) {
-        Intent intent = new Intent();
-        intent.setClass(this, clazz);
-        startActivity(intent);
+        LActivityUtils.startActivity(this,clazz);
     }
 }
