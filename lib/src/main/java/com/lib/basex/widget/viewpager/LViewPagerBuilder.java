@@ -35,7 +35,7 @@ public class LViewPagerBuilder<T, V extends View> {
         return this;
     }
 
-    public void build() {
+    public PageViewAdapter<T, V> build() {
         PageViewAdapter<T, V> pageViewAdapter = new PageViewAdapter<T, V>(dataList, adapter);
         lViewPager.setAdapter(pageViewAdapter);
         lViewPager.setScrollable(duration != 0);
@@ -44,5 +44,6 @@ public class LViewPagerBuilder<T, V extends View> {
             scroller.setScrollDuration(duration);
             scroller.initViewPagerScroll(lViewPager);
         }
+        return pageViewAdapter;
     }
 }
