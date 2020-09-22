@@ -22,16 +22,15 @@ public class LProperties {
             Properties properties = new Properties();
             in = assets.open(url);
             properties.load(in);
-            Properties var5 = properties;
-            return var5;
-        } catch (IOException var15) {
-            var15.printStackTrace();
+            return properties;
+        } catch (Exception e) {
+            Logger.error(e);
         } finally {
             if (null != in) {
                 try {
                     in.close();
-                } catch (IOException var14) {
-                    var14.printStackTrace();
+                } catch (Exception e) {
+                    Logger.error(e);
                 }
             }
         }
