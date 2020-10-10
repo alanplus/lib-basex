@@ -33,9 +33,8 @@ public abstract class LActivity<T extends LViewModel, D extends ViewDataBinding>
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(getContentId());
-        initStatusBar();
         d = DataBindingUtil.setContentView(this, getContentId());
+        initStatusBar();
         t = (T) createViewModel();
 
         //所有布局中dababinding对象变量名称都是vm
@@ -68,6 +67,6 @@ public abstract class LActivity<T extends LViewModel, D extends ViewDataBinding>
     }
 
     public void startActivity(Class<? extends Activity> clazz) {
-        LActivityUtils.startActivity(this,clazz);
+        LActivityUtils.startActivity(this, clazz);
     }
 }
