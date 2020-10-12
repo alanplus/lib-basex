@@ -13,7 +13,13 @@ import android.os.Environment;
 import android.os.Looper;
 import android.os.StatFs;
 import android.util.DisplayMetrics;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
 import android.view.WindowManager;
+
+import androidx.annotation.IdRes;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
 
 import java.io.File;
 import java.util.List;
@@ -184,6 +190,14 @@ public class LUtils {
         } else {
             return "/data/data/" + context.getPackageName();
         }
+    }
+
+    public static <T extends ViewDataBinding> T getViewDataBinding(Context context, @IdRes int res) {
+        return DataBindingUtil.inflate(LayoutInflater.from(context), res, null, false);
+    }
+
+    public static <T extends ViewDataBinding> T getViewDataBinding(Context context, @IdRes int res, ViewGroup viewGroup) {
+        return DataBindingUtil.inflate(LayoutInflater.from(context), res, viewGroup, true);
     }
 
 }

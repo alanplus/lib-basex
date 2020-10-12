@@ -16,7 +16,7 @@ ext {
             recycleView         : 'androidx.recyclerview:recyclerview:1.1.0',
             annotation          : 'androidx.annotation:annotation:1.1.0',
 
-            basex               : 'com.github.alanplus:lib-basex:0.2.5',
+            basex               : 'com.github.alanplus:lib-basex:0.2.6',
 
             glide               : "com.github.bumptech.glide:glide:4.9.0",
             eventbus            : "org.greenrobot:eventbus:3.0.0",
