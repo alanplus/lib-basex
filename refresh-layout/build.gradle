@@ -71,10 +71,10 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.annotation:annotation:1.1.0'
-    implementation 'androidx.recyclerview:recyclerview:1.1.0'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation lib.design
+    api lib.annotation
+    api lib.recycleView
+    api lib.legacy
+    api lib.design
 
 }
 
