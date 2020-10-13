@@ -1,6 +1,9 @@
 package com.lib.basex.utils;
 
+import android.content.Context;
 import android.text.TextUtils;
+
+import com.lib.basex.LApplication;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -14,6 +17,18 @@ import java.util.List;
  * Created by Mouse on 2018/10/18.
  */
 public class LFileUtils {
+
+    /**
+     *  获取APP 私有目录
+     * @return
+     */
+    public static String getDir() {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            return LApplication.app.getDataDir().getAbsolutePath();
+        } else {
+            return "/data/data/" + LApplication.app.getPackageName();
+        }
+    }
 
     public static String getFilename(String path) {
         if (TextUtils.isEmpty(path)) return "";
