@@ -79,8 +79,21 @@ public class LUtils {
                     PackageManager.GET_META_DATA);
             return appInfo.metaData.getString(key);
         } catch (PackageManager.NameNotFoundException e) {
+            Logger.error(e);
         }
         return null;
+    }
+
+    public static int getMetaDataInt(Context context, String key) {
+        ApplicationInfo appInfo;
+        try {
+            appInfo = context.getPackageManager().getApplicationInfo(context.getPackageName(),
+                    PackageManager.GET_META_DATA);
+            return appInfo.metaData.getInt(key);
+        } catch (PackageManager.NameNotFoundException e) {
+            Logger.error(e);
+        }
+        return -1;
     }
 
     public static int getCurrentSdk() {
