@@ -5,13 +5,14 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewbinding.ViewBinding;
 
-import com.alan.lib.simple.activity.SimpleActivity;
+
 import com.lib.basex.BR;
 import com.lib.basex.R;
 import com.lib.basex.utils.LActivityUtils;
@@ -25,15 +26,26 @@ import com.lib.basex.utils.statusbar.LStatusBar;
  * 时 间：2020-09-09
  * 简 述：<功能简述>
  */
-public abstract class LActivity<T extends LViewModel, D extends ViewDataBinding> extends SimpleActivity {
+public abstract class LActivity<T extends LViewModel, D extends ViewDataBinding> extends AppCompatActivity {
 
     protected T t;
     protected D d;
+
+    protected static IActivity iActivity;
+
+    public static void register(IActivity iActivity) {
+        LActivity.iActivity = iActivity;
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         d = DataBindingUtil.setContentView(this, getContentId());
+        IActivity iActivity = getIActivity();
+        if (null != iActivity) {
+            iActivity.onCreate(this);
+        }
+
         initStatusBar();
         t = (T) createViewModel();
 
@@ -68,5 +80,54 @@ public abstract class LActivity<T extends LViewModel, D extends ViewDataBinding>
 
     public void startActivity(Class<? extends Activity> clazz) {
         LActivityUtils.startActivity(this, clazz);
+    }
+
+    public IActivity getIActivity() {
+        return iActivity;
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        IActivity iActivity = getIActivity();
+        if (null != iActivity) {
+            iActivity.onStart(this);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        IActivity iActivity = getIActivity();
+        if (null != iActivity) {
+            iActivity.onResume(this);
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        IActivity iActivity = getIActivity();
+        if (null != iActivity) {
+            iActivity.onPause(this);
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        IActivity iActivity = getIActivity();
+        if (null != iActivity) {
+            iActivity.onStop(this);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        IActivity iActivity = getIActivity();
+        if (null != iActivity) {
+            iActivity.onDestroy(this);
+        }
     }
 }

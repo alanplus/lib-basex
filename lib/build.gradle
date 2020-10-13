@@ -65,7 +65,6 @@ dependencies {
     api lib.rxjava
     api lib.rxandroid
     api lib.nevercrash
-    api lib.simpleActivity
     api lib.design
     api lib.glide
     api lib.okio
