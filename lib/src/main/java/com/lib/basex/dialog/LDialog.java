@@ -27,7 +27,7 @@ public abstract class LDialog<D extends ViewDataBinding> extends Dialog {
     protected D d;
 
     public LDialog(@NonNull Context context) {
-        this(context, R.style.LAppTheme);
+        this(context, R.style.LDialogStyle);
     }
 
     public LDialog(@NonNull Context context, int themeResId) {
