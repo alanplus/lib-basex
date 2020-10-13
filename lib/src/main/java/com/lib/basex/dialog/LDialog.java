@@ -1,5 +1,6 @@
 package com.lib.basex.dialog;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -36,11 +37,10 @@ public abstract class LDialog<D extends ViewDataBinding> extends Dialog {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(getContentRes());
         d = (D) DataBindingUtil.inflate(LayoutInflater.from(getContext()), getContentRes(), null, false);
+        setContentView(d.getRoot());
         setSize(getDialogWidth());
     }
-
 
 
     public abstract int getContentRes();
