@@ -123,9 +123,15 @@ public class LBitmapUtils {
      * @return
      */
     public static Bitmap getViewScreenBitmap(@NonNull View v) {
+        //使控件可以进行缓存
         v.setDrawingCacheEnabled(true);
-        v.buildDrawingCache();
-        return v.getDrawingCache();
+        //获取缓存的 Bitmap
+        Bitmap drawingCache = v.getDrawingCache();
+        //复制获取的 Bitmap
+        drawingCache = Bitmap.createBitmap(drawingCache);
+        //关闭视图的缓存
+        v.setDrawingCacheEnabled(false);
+        return drawingCache;
     }
 
     public static void recycle(Bitmap... bitmap) {
