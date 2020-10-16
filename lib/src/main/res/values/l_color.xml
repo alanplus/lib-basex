@@ -151,4 +151,6 @@
     <color name="navy">#000080</color> <!-- 海军色 -->
     <color name="black">#000000</color> <!-- 黑色 -->
 
+    <color name="title_bar_back_color">#333333</color>
+
 </resources>

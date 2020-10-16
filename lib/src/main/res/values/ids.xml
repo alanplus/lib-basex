@@ -35,4 +35,6 @@
     <item name="tag_anim_type" type="id" />
     <item name="tag_loading" type="id" />
 
+    <item name="title_bar_left_image_view" type="id" />
+
 </resources>

@@ -40,7 +40,11 @@ public abstract class LActivity<T extends LViewModel, D extends ViewDataBinding>
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        d = DataBindingUtil.setContentView(this, getContentId());
+        initContentView();
+        onCreate();
+    }
+
+    protected void onCreate(){
         IActivity iActivity = getIActivity();
         if (null != iActivity) {
             iActivity.onCreate(this);
@@ -54,6 +58,10 @@ public abstract class LActivity<T extends LViewModel, D extends ViewDataBinding>
         d.executePendingBindings();//立即更新UI
         getLifecycle().addObserver(t);
         initView();
+    }
+
+    protected void initContentView(){
+        d = DataBindingUtil.setContentView(this, getContentId());
     }
 
     protected ViewModel createViewModel() {

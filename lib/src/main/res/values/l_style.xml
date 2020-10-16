@@ -21,6 +21,17 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
+    <declare-styleable name="LSmileyLoadingView">
+        <!-- animation duration -->
+        <attr name="l_duration" format="integer" />
+        <!-- stroke width -->
+        <attr name="l_strokeWidth" format="dimension" />
+        <!-- stroke color -->
+        <attr name="l_strokeColor" format="color" />
+        <!-- animation repeat count -->
+        <attr name="l_animRepeatCount" format="integer" />
+    </declare-styleable>
+
 
 
 </resources>

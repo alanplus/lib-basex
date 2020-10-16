@@ -31,7 +31,7 @@ public abstract class LLinearLayout<T, D extends ViewDataBinding> extends Linear
     }
 
     protected void initView(@Nullable AttributeSet attrs) {
-        d = (D) DataBindingUtil.inflate(LayoutInflater.from(getContext()), getContentId(), this, true);
+        d =  DataBindingUtil.inflate(LayoutInflater.from(getContext()), getContentId(), this, true);
 
     }
 

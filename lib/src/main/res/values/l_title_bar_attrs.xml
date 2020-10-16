@@ -1,0 +1,89 @@
+<resources>
+
+    <attr name="title_bar_style" format="reference" />
+
+    <!-- 设置分割线 -->
+    <attr name="tb_divider_color" format="reference|color" />
+    <attr name="tb_divider_height" format="dimension" />
+
+    <!-- 设置背景颜色 -->
+    <attr name="tb_bg_color" format="reference|color" />
+
+    <!-- 设置左侧按钮图标 -->
+    <attr name="tb_left_drawable" format="reference" />
+
+    <!-- 设置左侧文本 -->
+    <attr name="tb_left_text" format="string|reference" />
+    <attr name="tb_left_text_size" format="dimension" />
+    <attr name="tb_left_text_color" format="reference|color" />
+
+    <!-- 设置主标题 -->
+    <attr name="tb_text_size" format="dimension" />
+    <attr name="tb_text_color" format="reference|color" />
+
+    <!-- 设置副标题 -->
+    <attr name="tb_sub_text_size" format="dimension" />
+    <attr name="tb_sub_text_color" format="reference|color" />
+
+    <!-- 右侧 文本按钮 -->
+    <attr name="tb_right_text" format="string|reference" />
+    <attr name="tb_right_text_size" format="dimension" />
+    <attr name="tb_right_text_color" format="reference|color" />
+    <attr name="tb_right_press_text_color" format="reference|color" />
+
+    <!-- 右侧 图标按钮 -->
+    <attr name="tb_right_drawable" format="reference" />
+
+    <declare-styleable name="LTitleBar">
+        <!-- 设置分割线 -->
+        <attr name="title_bar_divider_color" format="reference|color" />
+        <attr name="title_bar_divider_height" format="dimension" />
+
+        <!-- 设置背景颜色 -->
+        <attr name="title_bar_bg_color" format="reference|color" />
+
+        <!-- 设置左侧按钮图标 -->
+        <attr name="title_bar_left_drawable" format="reference" />
+
+        <!-- 设置左侧文本 -->
+        <attr name="title_bar_left_text" format="string|reference" />
+        <attr name="title_bar_left_text_size" format="dimension" />
+        <attr name="title_bar_left_text_color" format="reference|color" />
+
+        <!-- 设置主标题 -->
+        <attr name="tb_text" format="string|reference" />
+        <attr name="title_bar_text_size" format="dimension" />
+        <attr name="title_bar_text_color" format="reference|color" />
+
+        <!-- 设置副标题 -->
+        <attr name="tb_sub_text" format="string|reference" />
+        <attr name="title_bar_sub_text_size" format="dimension" />
+        <attr name="title_bar_sub_text_color" format="reference|color" />
+
+        <!-- 右侧 文本按钮 -->
+        <attr name="title_bar_right_text" format="string|reference" />
+        <attr name="title_bar_right_text_size" format="dimension" />
+        <attr name="title_bar_right_text_color" format="reference|color" />
+        <attr name="title_bar_right_press_text_color" format="reference|color" />
+
+        <!-- 右侧 图标按钮 -->
+        <attr name="title_bar_right_drawable" format="reference" />
+
+    </declare-styleable>
+
+    <style name="TitleBarLightStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="title_bar_divider_color">#DEE0E2</item>
+        <item name="title_bar_divider_height">0.5dp</item>
+        <item name="title_bar_bg_color">@android:color/white</item>
+        <item name="title_bar_left_drawable">@drawable/l_title_bar_back</item>
+        <item name="title_bar_text_size">17dp</item>
+        <item name="title_bar_text_color">@color/title_bar_back_color</item>
+        <item name="title_bar_sub_text_color">#535353</item>
+        <item name="title_bar_sub_text_size">13dp</item>
+        <item name="title_bar_right_text_color">@color/title_bar_back_color</item>
+        <item name="title_bar_right_text_size">15dp</item>
+    </style>
+
+</resources>
