@@ -84,6 +84,15 @@ public class LRecycleViewProxy<T> {
         }
         mRecyclerView.setLayoutManager(layoutManager);
         adapter = new BaseRecycleAdapter<>(context, mListData, mIBaseRecycleView);
+
+        if (headView != null) {
+            adapter.setHeadView(headView);
+        }
+
+        if (footView != null) {
+            adapter.setFootView(footView);
+        }
+
         mRecyclerView.setAdapter(adapter);
         if (!isReUsed) {
             mRecyclerView.getRecycledViewPool().setMaxRecycledViews(BaseRecycleAdapter.VIEW_TYPE_COMMON, 0);

@@ -28,11 +28,9 @@ public class BaseRecycleAdapter<T> extends RecyclerView.Adapter<BaseRecycleAdapt
     public static final int VIEW_TYPE_FOOT = 3;
     public static final int VIEW_TYPE_TITLE = 4;
 
-    public RecyclerView mRecycleView;
+    private View mHeadView;
 
-    public View mHeadView;
-
-    public View mFootView;
+    private View mFootView;
 
 
     public BaseRecycleAdapter(@NonNull Context context, List<T> list, @NonNull IBaseRecycleView<T> iRecycleView) {
