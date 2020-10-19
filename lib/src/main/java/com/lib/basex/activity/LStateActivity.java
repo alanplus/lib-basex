@@ -25,6 +25,12 @@ public abstract class LStateActivity<T extends LStateViewModel, D extends ViewDa
         binding = DataBindingUtil.setContentView(this, R.layout.l_activity_state);
         d = DataBindingUtil.inflate(LayoutInflater.from(this), getContentId(), null, false);
         binding.stateLayout.addView(d.getRoot(), new RelativeLayout.LayoutParams(-1, -1));
+
+    }
+
+    @Override
+    protected void onCreate() {
+        super.onCreate();
         t.state.observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
