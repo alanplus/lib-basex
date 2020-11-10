@@ -62,8 +62,7 @@ public class LGsonUtils {
     public static <T> HashMap<String, T> stringTHashMap(String string, Class<T> clazz) {
         Type type = new TypeToken<HashMap<String, T>>() {
         }.getType();
-        HashMap<String, T> map = mGson.fromJson(string, type);
-        return map;
+        return mGson.fromJson(string, type);
     }
 
     public static <T> String hashMapToString(HashMap<String, T> map) {

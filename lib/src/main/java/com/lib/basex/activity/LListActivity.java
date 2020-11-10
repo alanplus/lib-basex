@@ -1,5 +1,7 @@
 package com.lib.basex.activity;
 
+import android.view.View;
+
 import com.lib.basex.R;
 import com.lib.basex.databinding.LActivityListBinding;
 import com.lib.basex.widget.recycleview.IBaseRecycleView;
@@ -31,7 +33,11 @@ public abstract class LListActivity<T extends LStateViewModel, H> extends LState
 
     public void initRecycleView(LRecycleViewProxy<H> lRecycleViewProxy) {
         lRecycleViewProxy.setDataList(new ArrayList<>());
+    }
 
+    public void setTitleBar(String title) {
+        d.lTitleBar.setVisibility(View.VISIBLE);
+        d.lTitleBar.setTitle(title);
     }
 
 }

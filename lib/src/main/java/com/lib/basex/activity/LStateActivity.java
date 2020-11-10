@@ -58,5 +58,4 @@ public abstract class LStateActivity<T extends LStateViewModel, D extends ViewDa
         binding.titleBar.setTitle(title);
     }
 
-
 }
