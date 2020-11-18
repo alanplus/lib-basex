@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.lib.basex.activity.LActivity;
 import com.lib.basex.activity.LViewModel;
+import com.lib.basex.activity.LWebViewActivity;
 import com.lib.basex.dialog.LightLoadingDialog;
 import com.lib.test.databinding.ActivityMainBinding;
 
@@ -43,6 +44,17 @@ public class MainActivity extends LActivity<AViewModel, ActivityMainBinding> {
             public void onClick(View view) {
                 LightLoadingDialog lightLoadingDialog = new LightLoadingDialog(getActivity());
                 lightLoadingDialog.show();
+            }
+        });
+
+        d.showWebView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), LWebViewActivity.class);
+                intent.putExtra("title", "测试");
+                intent.putExtra("url", "http://www.baidu.com");
+                startActivity(intent);
             }
         });
     }

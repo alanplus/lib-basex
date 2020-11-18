@@ -44,6 +44,8 @@ public class LStateViewModel extends LViewModel implements LifecycleObserver, Vi
         state.setValue(STATE_FAILURE);
     }
 
+
+
     public String getLoadingText() {
         return "正在加载...";
     }
