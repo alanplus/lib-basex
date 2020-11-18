@@ -91,13 +91,13 @@ public abstract class LStateActivity<T extends LStateViewModel, D extends ViewDa
     protected void dismissSuccessLoadingDialog(LLoadingDialogInfo lLoadingDialogInfo) {
         if (null != loadingDialog && loadingDialog.isShowing()) {
             boolean isSuccess = lLoadingDialogInfo.state == 2;
-            loadingDialog.dismiss(lLoadingDialogInfo.dismissText, isSuccess, () -> onLoadingDismiss(isSuccess));
+            loadingDialog.dismiss(lLoadingDialogInfo.showText, isSuccess, () -> onLoadingDismiss(isSuccess));
         }
     }
 
 
     protected void onLoadingDismiss(boolean isSuccess) {
-
+        dismissImmediately();
     }
 
     protected void dismissImmediately() {

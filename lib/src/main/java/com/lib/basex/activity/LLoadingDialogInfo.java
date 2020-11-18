@@ -14,6 +14,4 @@ public class LLoadingDialogInfo {
 
     public String showText;
 
-    public String dismissText;
-
 }

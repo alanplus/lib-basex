@@ -96,7 +96,7 @@ public class LStateViewModel extends LViewModel implements LifecycleObserver, Vi
     protected void dismissDialog(String text, boolean isSuccess) {
         LLoadingDialogInfo lLoadingDialogInfo = new LLoadingDialogInfo();
         lLoadingDialogInfo.state = isSuccess ? 2 : 3;
-        lLoadingDialogInfo.showText = text;
+        lLoadingDialogInfo.dismissText = text;
         loadingInfo.setValue(lLoadingDialogInfo);
     }
 
