@@ -9,6 +9,7 @@
         <item name="l_menu_item_text_color">@color/l_home_tab_text_color</item>
         <!-- 主题色 -->
         <item name="l_theme_color">@color/l_theme</item>
+        <item name="l_light_loading">@drawable/ic_loading_2</item>
     </style>
 
 
@@ -21,6 +22,10 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
+    <style name="LTranslateDialogStyle" parent="LDialogStyle">
+        <item name="android:backgroundDimAmount">0</item>
+    </style>
+
     <declare-styleable name="LSmileyLoadingView">
         <!-- animation duration -->
         <attr name="l_duration" format="integer" />
@@ -31,7 +36,6 @@
         <!-- animation repeat count -->
         <attr name="l_animRepeatCount" format="integer" />
     </declare-styleable>
-
 
 
 </resources>

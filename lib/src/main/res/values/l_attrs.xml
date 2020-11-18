@@ -5,6 +5,7 @@
     <!-- 状态栏 颜色 字体大小 -->
     <attr name="l_status_bar_bg_color" format="color" />
     <attr name="l_status_bar_text_is_white" format="boolean" />
+    <attr name="l_light_loading" format="reference" />
 
     <!-- 主界面 底部tab 配置 -->
     <attr name="l_home_tab_menu" format="reference" />

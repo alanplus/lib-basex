@@ -12,15 +12,15 @@
         android:layout_height="match_parent"
         android:layout_weight="1">
 
-        <com.lvleo.dataloadinglayout.DataLoadingLayout
-            android:id="@+id/loading_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/darker_gray"
-            app:loadingBarColor="@android:color/holo_purple"
-            app:statusText="暂无数据"
-            app:statusTextColor="@android:color/black"
-            app:statusTextSize="16sp" />
+<!--        <com.lvleo.dataloadinglayout.DataLoadingLayout-->
+<!--            android:id="@+id/loading_layout"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:background="@android:color/darker_gray"-->
+<!--            app:loadingBarColor="@android:color/holo_purple"-->
+<!--            app:statusText="暂无数据"-->
+<!--            app:statusTextColor="@android:color/black"-->
+<!--            app:statusTextSize="16sp" />-->
 
 
     </LinearLayout>

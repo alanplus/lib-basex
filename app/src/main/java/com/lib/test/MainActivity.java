@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.lib.basex.activity.LActivity;
 import com.lib.basex.activity.LViewModel;
+import com.lib.basex.dialog.LightLoadingDialog;
 import com.lib.test.databinding.ActivityMainBinding;
 
 public class MainActivity extends LActivity<AViewModel, ActivityMainBinding> {
@@ -29,14 +30,21 @@ public class MainActivity extends LActivity<AViewModel, ActivityMainBinding> {
 
     @Override
     public void initView() {
-        d.content.setBackgroundColor(Color.BLUE);
-        d.content.postDelayed(new Runnable() {
+        d.content.setBackgroundColor(Color.WHITE);
+//        d.content.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                t.arrayMap.put("name", "abac");
+//                startActivity(LoadingActivity.class);
+//            }
+//        }, 3000);
+        d.showLightDialog.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void run() {
-                t.arrayMap.put("name", "abac");
-                startActivity(LoadingActivity.class);
+            public void onClick(View view) {
+                LightLoadingDialog lightLoadingDialog = new LightLoadingDialog(getActivity());
+                lightLoadingDialog.show();
             }
-        }, 3000);
+        });
     }
 
 

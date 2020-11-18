@@ -73,6 +73,8 @@ public class LAnimation {
         scaleXValue = 0.5f;
         scaleXType = Animation.RELATIVE_TO_SELF;
         scaleYValue = 0.5f;
+        fromDegree = 0;
+        toDegree = 359;
     }
 
     public LAnimation setFromDegree(float fromDegree) {
@@ -155,6 +157,31 @@ public class LAnimation {
         return this;
     }
 
+    public LAnimation setInterpolator(Interpolator interpolator) {
+        this.interpolator = interpolator;
+        return this;
+    }
+
+    public LAnimation setDuration(int duration) {
+        this.duration = duration;
+        return this;
+    }
+
+    public LAnimation setRepeatCount(int repeatCount) {
+        this.repeatCount = repeatCount;
+        return this;
+    }
+
+    public LAnimation setRepeatMode(int repeatMode) {
+        this.repeatMode = repeatMode;
+        return this;
+    }
+
+    public LAnimation setFilter(boolean filter) {
+        isFilter = filter;
+        return this;
+    }
+
     public Animation build() {
         Animation animation = null;
         switch (type) {
@@ -184,7 +211,7 @@ public class LAnimation {
     }
 
     public static RotateAnimation createDefaultRotateAnimation(float from, float to) {
-        RotateAnimation animation = new RotateAnimation(from, to, 0.5f, 0.5f);
+        RotateAnimation animation = new RotateAnimation(from, to, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         animation.setDuration(500);
         animation.setInterpolator(new LinearInterpolator());
         animation.setRepeatCount(Animation.INFINITE);

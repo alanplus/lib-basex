@@ -26,6 +26,16 @@
             android:onClick="@{()->vm.click()}"
             android:text="@{vm.arrayMap.name}" />
 
+        <TextView
+            android:id="@+id/show_light_dialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="20dp"
+            android:padding="20dp"
+            android:text="显示弹窗"
+            android:background="@android:color/darker_gray" />
+
 
     </LinearLayout>
 
