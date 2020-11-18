@@ -1,9 +1,12 @@
 package com.lib.basex.activity;
 
+import android.text.TextUtils;
+
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.ViewModel;
 
 import com.lib.basex.LApplication;
+import com.lib.basex.utils.LToastManager;
 import com.lib.basex.utils.LUtils;
 
 /**
@@ -16,6 +19,12 @@ public class LViewModel extends ViewModel implements LifecycleObserver {
 
     public boolean isNetworkAvailable() {
         return LUtils.isNetworkAvailable(LApplication.app);
+    }
+
+    public void showMessage(String message) {
+        if (!TextUtils.isEmpty(message)) {
+            LToastManager.getInstance().showToast(LApplication.app, message);
+        }
     }
 
 }
