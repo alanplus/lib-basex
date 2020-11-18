@@ -41,6 +41,7 @@ public class LoadingDialog extends LDialog<LDialogLoadingBinding> implements LLo
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setCanceledOnTouchOutside(false);
+        setCancelable(false);
         TextView textView = d.text;
         if (!TextUtils.isEmpty(this.text)) {
             textView.setText(this.text);

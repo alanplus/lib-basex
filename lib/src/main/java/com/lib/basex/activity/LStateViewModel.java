@@ -18,6 +18,10 @@ public class LStateViewModel extends LViewModel implements LifecycleObserver, Vi
     public static final int STATE_SUCCESS = 1;
     public static final int STATE_FAILURE = 2;
 
+
+    public static final int DIALOG_LOADING_SHOW = 1;
+    public static final int DIALOG_LOADING_HIDDEN = 2;
+
     public String failureText = "加载失败，请重试";
     public boolean isRetry = true;
 
@@ -31,6 +35,7 @@ public class LStateViewModel extends LViewModel implements LifecycleObserver, Vi
     }
 
     public MutableLiveData<Integer> state = new MutableLiveData<>(STATE_SUCCESS);
+    public MutableLiveData<LLoadingDialogInfo> loadingInfo = new MutableLiveData<>();
 
     public void showLoadingState() {
         state.setValue(STATE_LOADING);
@@ -43,7 +48,6 @@ public class LStateViewModel extends LViewModel implements LifecycleObserver, Vi
     public void showFailureState() {
         state.setValue(STATE_FAILURE);
     }
-
 
 
     public String getLoadingText() {
@@ -62,4 +66,44 @@ public class LStateViewModel extends LViewModel implements LifecycleObserver, Vi
         return this;
     }
 
+    public void showLoadingDialog(String text) {
+        LLoadingDialogInfo lLoadingDialogInfo = new LLoadingDialogInfo();
+        lLoadingDialogInfo.state = 1;
+        lLoadingDialogInfo.showText = text;
+        loadingInfo.setValue(lLoadingDialogInfo);
+    }
+
+    protected void showLoadingDialog() {
+        showLoadingDialog("正在加载");
+    }
+
+    protected void dismissSuccessDialog(String text) {
+        dismissDialog(text, true);
+    }
+
+    protected void dismissSuccessDialog() {
+        dismissDialog("加载完成", true);
+    }
+
+    protected void dismissFailureDialog(String text) {
+        dismissDialog(text, false);
+    }
+
+    protected void dismissFailureDialog() {
+        dismissDialog("加载失败", false);
+    }
+
+    protected void dismissDialog(String text, boolean isSuccess) {
+        LLoadingDialogInfo lLoadingDialogInfo = new LLoadingDialogInfo();
+        lLoadingDialogInfo.state = isSuccess ? 2 : 3;
+        lLoadingDialogInfo.showText = text;
+        loadingInfo.setValue(lLoadingDialogInfo);
+    }
+
+
+    protected void dismissImmediately() {
+        LLoadingDialogInfo lLoadingDialogInfo = new LLoadingDialogInfo();
+        lLoadingDialogInfo.state = 4;
+        loadingInfo.setValue(lLoadingDialogInfo);
+    }
 }
