@@ -6,6 +6,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.graphics.Paint;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
@@ -211,6 +212,15 @@ public class LUtils {
 
     public static <T extends ViewDataBinding> T getViewDataBinding(Context context, @IdRes int res, ViewGroup viewGroup) {
         return DataBindingUtil.inflate(LayoutInflater.from(context), res, viewGroup, true);
+    }
+
+    public static int getTextWidth(Paint paint, String text) {
+        return (int) paint.measureText(text);
+    }
+
+    public static int getTextHeight(Paint paint) {
+        Paint.FontMetrics fm = paint.getFontMetrics();
+        return (int) Math.ceil((double) (fm.descent - fm.top)) + 2;
     }
 
 }
