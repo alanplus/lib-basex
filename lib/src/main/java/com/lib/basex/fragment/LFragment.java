@@ -36,13 +36,19 @@ public abstract class LFragment<VM extends LViewModel, D extends ViewDataBinding
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         vm = (VM) new ViewModelProvider(requireActivity()).get(LClassUtils.getTClassObject(this));
-        d = DataBindingUtil.inflate(inflater, getContentId(), container, false);
-        d.setVariable(BR.vm, vm);
+        initContentView(inflater, container);
         initView(savedInstanceState);
         return d.getRoot();
     }
 
-    public abstract void initView(@Nullable Bundle savedInstanceState);
+
+    protected void initContentView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
+        d = DataBindingUtil.inflate(inflater, getContentId(), container, false);
+    }
+
+    public void initView(@Nullable Bundle savedInstanceState) {
+        d.setVariable(BR.vm, vm);
+    }
 
     public abstract int getContentId();
 
