@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -100,7 +101,6 @@ public class BaseRecycleAdapter<T> extends RecyclerView.Adapter<BaseRecycleAdapt
     }
 
 
-
     public static class CommonViewHolder extends RecyclerView.ViewHolder {
 
         public View itemView;
@@ -132,5 +132,38 @@ public class BaseRecycleAdapter<T> extends RecyclerView.Adapter<BaseRecycleAdapt
 
     public void setFootView(View mFootView) {
         this.mFootView = mFootView;
+    }
+
+    private GridSpanSizeLookup gridSpanSizeLookup;
+
+    @Override
+    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+        RecyclerView.LayoutManager manager = recyclerView.getLayoutManager();
+        if (manager instanceof GridLayoutManager) {
+            GridLayoutManager gridManager = ((GridLayoutManager) manager);
+            if (gridSpanSizeLookup == null) {
+                gridSpanSizeLookup = new GridSpanSizeLookup(gridManager);
+            }
+            gridManager.setSpanSizeLookup(gridSpanSizeLookup);
+        }
+    }
+
+    class GridSpanSizeLookup extends GridLayoutManager.SpanSizeLookup {
+
+        private GridLayoutManager gridLayoutManager;
+
+        public GridSpanSizeLookup(@NonNull GridLayoutManager gridLayoutManager) {
+            this.gridLayoutManager = gridLayoutManager;
+        }
+
+        @Override
+        public int getSpanSize(int position) {
+            int itemViewType = getItemViewType(position);
+            if (itemViewType == VIEW_TYPE_FOOT) {
+                return gridLayoutManager.getSpanCount();  // 如果是FootView直接返回网格布局一行的个数  这里是3
+            }
+            return 1;  // 正常View的话返回默认1
+        }
     }
 }
