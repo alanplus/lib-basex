@@ -223,4 +223,14 @@ public class LUtils {
         return (int) Math.ceil((double) (fm.descent - fm.top)) + 2;
     }
 
+    public static float getTextYCenter(Paint paint, int height) {
+        Paint.FontMetrics fontMetrics = paint.getFontMetrics();
+        return (float) height / 2 + (Math.abs(fontMetrics.ascent) - fontMetrics.descent) / 2;
+    }
+
+    public static float getTextXCenter(Paint paint, int width, String text) {
+        int textWidth = getTextWidth(paint, text);
+        return (float) (width - textWidth) / 2;
+    }
+
 }
