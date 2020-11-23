@@ -3,6 +3,8 @@ package com.lib.basex.widget.recycleview;
 import android.content.Context;
 import android.view.View;
 
+import androidx.databinding.ViewDataBinding;
+
 /**
  * @author Alan
  * 时 间：2020-05-14

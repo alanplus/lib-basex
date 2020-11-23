@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 
+import com.lib.basex.R;
+
 import java.util.List;
 
 /**
@@ -83,7 +85,12 @@ public class BaseRecycleAdapter<T> extends RecyclerView.Adapter<BaseRecycleAdapt
         if (type == VIEW_TYPE_FOOT) {
             return new FootViewHolder(mFootView);
         }
-
+        View view = iRecycleView.getView(context, VIEW_TYPE_COMMON);
+//        Object tag = view.getTag(R.id.l_adapter_view_data_binding);
+//        ViewDataBinding viewDataBinding = null;
+//        if (tag instanceof ViewDataBinding) {
+//            viewDataBinding = (ViewDataBinding) tag;
+//        }
         return new CommonViewHolder(iRecycleView.getView(context, VIEW_TYPE_COMMON));
     }
 

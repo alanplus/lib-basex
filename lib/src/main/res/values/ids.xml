@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <item name="l_adapter_view_data_binding" type="id" />
 
     <item name="vui_titlebar_left_back" type="id" />
     <item name="vui_titlebar_right_text" type="id" />
