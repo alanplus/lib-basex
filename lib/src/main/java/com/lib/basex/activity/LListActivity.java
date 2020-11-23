@@ -35,9 +35,4 @@ public abstract class LListActivity<T extends LStateViewModel, H> extends LState
         lRecycleViewProxy.setDataList(new ArrayList<>());
     }
 
-    public void setTitleBar(String title) {
-        d.lTitleBar.setVisibility(View.VISIBLE);
-        d.lTitleBar.setTitle(title);
-    }
-
 }

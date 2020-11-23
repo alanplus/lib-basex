@@ -7,8 +7,10 @@ import android.view.ViewGroup;
 
 
 import androidx.annotation.NonNull;
+import androidx.databinding.ViewDataBinding;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewbinding.ViewBinding;
 
 import java.util.List;
 
@@ -109,6 +111,7 @@ public class BaseRecycleAdapter<T> extends RecyclerView.Adapter<BaseRecycleAdapt
             super(itemView);
             this.itemView = itemView;
         }
+
     }
 
     public static class HeadViewHolder extends CommonViewHolder {
