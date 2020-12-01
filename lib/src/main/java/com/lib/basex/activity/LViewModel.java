@@ -23,6 +23,10 @@ public class LViewModel extends ViewModel implements LifecycleObserver {
         return LUtils.isNetworkAvailable(LApplication.app);
     }
 
+    public boolean noNet() {
+        return !isNetworkAvailable();
+    }
+
     public void showMessage(String message) {
         if (!TextUtils.isEmpty(message)) {
             LToastManager.getInstance().showToast(LApplication.app, message);

@@ -23,6 +23,7 @@ public class LStateViewModel extends LViewModel implements LifecycleObserver, Vi
     public static final int DIALOG_LOADING_HIDDEN = 2;
 
     public String failureText = "加载失败，请重试";
+    public String NO_NET = "网络无效，请重试";
     public boolean isRetry = true;
 
     @Override
