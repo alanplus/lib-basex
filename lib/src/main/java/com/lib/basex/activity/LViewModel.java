@@ -3,6 +3,7 @@ package com.lib.basex.activity;
 import android.text.TextUtils;
 
 import androidx.lifecycle.LifecycleObserver;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.lib.basex.LApplication;
@@ -16,6 +17,7 @@ import com.lib.basex.utils.LUtils;
  */
 public class LViewModel extends ViewModel implements LifecycleObserver {
 
+    public MutableLiveData<Boolean> isFinish = new MutableLiveData<>();
 
     public boolean isNetworkAvailable() {
         return LUtils.isNetworkAvailable(LApplication.app);
@@ -27,4 +29,7 @@ public class LViewModel extends ViewModel implements LifecycleObserver {
         }
     }
 
+    public void finish() {
+        isFinish.setValue(true);
+    }
 }

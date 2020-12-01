@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewbinding.ViewBinding;
@@ -44,14 +45,21 @@ public abstract class LActivity<T extends LViewModel, D extends ViewDataBinding>
         onCreate();
     }
 
-    protected void onCreate(){
+    protected void onCreate() {
         IActivity iActivity = getIActivity();
         if (null != iActivity) {
             iActivity.onCreate(this);
         }
 
+
         initStatusBar();
         t = (T) createViewModel();
+
+        t.isFinish.observe(this, aBoolean -> {
+            if (aBoolean) {
+                finish();
+            }
+        });
 
         //所有布局中dababinding对象变量名称都是vm
         d.setVariable(BR.vm, t);
@@ -60,7 +68,7 @@ public abstract class LActivity<T extends LViewModel, D extends ViewDataBinding>
         initView();
     }
 
-    protected void initContentView(){
+    protected void initContentView() {
         d = DataBindingUtil.setContentView(this, getContentId());
     }
 
