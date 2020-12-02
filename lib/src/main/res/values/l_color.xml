@@ -152,5 +152,6 @@
     <color name="black">#000000</color> <!-- 黑色 -->
 
     <color name="title_bar_back_color">#333333</color>
+    <color name="transparent80">#80000000</color>
 
 </resources>

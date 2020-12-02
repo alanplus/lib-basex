@@ -37,5 +37,13 @@
         <attr name="l_animRepeatCount" format="integer" />
     </declare-styleable>
 
+    <!--  半透明的activity-->
+    <style name="TransparentActivityStyle" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <!--  半透明的activity-->
+        <item name="android:windowBackground">@color/transparent80</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
 
 </resources>
