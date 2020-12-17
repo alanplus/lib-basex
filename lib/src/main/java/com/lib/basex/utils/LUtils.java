@@ -26,6 +26,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 
 import androidx.annotation.IdRes;
+import androidx.annotation.LayoutRes;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 
@@ -213,11 +214,11 @@ public class LUtils {
         }
     }
 
-    public static <T extends ViewDataBinding> T getViewDataBinding(Context context, @IdRes int res) {
+    public static <T extends ViewDataBinding> T getViewDataBinding(Context context, @LayoutRes int res) {
         return DataBindingUtil.inflate(LayoutInflater.from(context), res, null, false);
     }
 
-    public static <T extends ViewDataBinding> T getViewDataBinding(Context context, @IdRes int res, ViewGroup viewGroup) {
+    public static <T extends ViewDataBinding> T getViewDataBinding(Context context, @LayoutRes int res, ViewGroup viewGroup) {
         return DataBindingUtil.inflate(LayoutInflater.from(context), res, viewGroup, true);
     }
 
