@@ -39,7 +39,7 @@
 
     <!--  半透明的activity-->
     <style name="TransparentActivityStyle" parent="@style/Theme.AppCompat.Light.NoActionBar">
-        <!--  半透明的activity-->
+        <!--  一定要引用颜色，不可以直接写颜色值-->
         <item name="android:windowBackground">@color/transparent80</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsTranslucent">true</item>

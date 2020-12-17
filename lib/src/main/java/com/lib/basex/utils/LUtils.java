@@ -7,12 +7,19 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Environment;
 import android.os.Looper;
 import android.os.StatFs;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextUtils;
+import android.text.style.AbsoluteSizeSpan;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -231,6 +238,54 @@ public class LUtils {
     public static float getTextXCenter(Paint paint, int width, String text) {
         int textWidth = getTextWidth(paint, text);
         return (float) (width - textWidth) / 2;
+    }
+
+    public static void setSpannableTextColor(SpannableString string, int start, int len, int color) {
+        string.setSpan(new ForegroundColorSpan(color), start, start + len,  Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+    }
+
+    public static void setSpannableTextSize(SpannableString string, int start, int len, int size) {
+        string.setSpan(new AbsoluteSizeSpan(size, true), start, start + len,  Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+    }
+
+
+    public static void setSpannableTextBold(SpannableString string, int start, int len) {
+        string.setSpan(new StyleSpan(Typeface.BOLD), start, start + len,  Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+    }
+
+    public static void setSpannableTextItalic(SpannableString string, int start, int len) {
+        string.setSpan(new StyleSpan(Typeface.ITALIC), start, start + len,  Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+    }
+
+    public static void setSpannableTextItalicAndBold(SpannableString string, int start, int len) {
+        string.setSpan(new StyleSpan(Typeface.BOLD_ITALIC), start, start + len,  Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+    }
+
+    public static boolean isEnglishChar(String s) {
+        if (TextUtils.isEmpty(s)) {
+            return false;
+        }
+
+        if (s.length() != 1) {
+            return false;
+        }
+        char c = s.charAt(0);
+        return isEnglishChar(c);
+    }
+
+    /**
+     * ASCII码
+     * A-Z 65-90 91 [ 92 \ 93 ] 94^ 95_96` a-z 97-122
+     * 33-47 标点符号 0-9 48-64
+     *
+     * @param s
+     * @return
+     */
+    public static boolean isEnglishChar(char s) {
+        if ((s >= 65 && s <= 90) || (s >= 97 && s <= 122)) {
+            return true;
+        }
+        return false;
     }
 
 }
