@@ -1,17 +1,14 @@
 package com.lib.basex.activity;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.viewbinding.ViewBinding;
 
 
 import com.lib.basex.BR;
@@ -20,6 +17,8 @@ import com.lib.basex.utils.LActivityUtils;
 import com.lib.basex.utils.LClassUtils;
 import com.lib.basex.utils.LResourceUtils;
 import com.lib.basex.utils.statusbar.LStatusBar;
+
+import org.greenrobot.eventbus.EventBus;
 
 
 /**
@@ -43,6 +42,9 @@ public abstract class LActivity<T extends LViewModel, D extends ViewDataBinding>
         super.onCreate(savedInstanceState);
         initContentView();
         onCreate();
+        if (configEvenBus()) {
+            EventBus.getDefault().register(this);
+        }
     }
 
     protected void onCreate() {
@@ -141,9 +143,16 @@ public abstract class LActivity<T extends LViewModel, D extends ViewDataBinding>
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if (configEvenBus()) {
+            EventBus.getDefault().unregister(this);
+        }
         IActivity iActivity = getIActivity();
         if (null != iActivity) {
             iActivity.onDestroy(this);
         }
+    }
+
+    protected boolean configEvenBus() {
+        return false;
     }
 }
