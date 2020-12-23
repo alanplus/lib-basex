@@ -128,17 +128,15 @@ public class RectangleIndicator extends View {
         ViewGroup.LayoutParams layoutParams = getLayoutParams();
         if (layoutParams instanceof LinearLayout.LayoutParams) {
             ((LinearLayout.LayoutParams) layoutParams).leftMargin = startP;
-        }else if(layoutParams instanceof RelativeLayout.LayoutParams){
+        } else if (layoutParams instanceof RelativeLayout.LayoutParams) {
             ((RelativeLayout.LayoutParams) layoutParams).leftMargin = startP;
-        }else if(layoutParams instanceof FrameLayout.LayoutParams){
+        } else if (layoutParams instanceof FrameLayout.LayoutParams) {
             ((FrameLayout.LayoutParams) layoutParams).leftMargin = startP;
         }
-        startP = 0;
-//        setTranslationX(startP);
     }
 
     public void setProgress(int progress, int max) {
-        float x = startP + (float) progressBarWidth * progress / max;
+        float x = (float) progressBarWidth * progress / max;
         int p = progress * 100 / max;
         text = p + "%";
         postInvalidate();
