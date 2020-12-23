@@ -16,4 +16,14 @@ public class LActivityUtils {
         intent.setClass(context, clazz);
         context.startActivity(intent);
     }
+
+    public static void startActivity(Context context, String className) {
+        Intent intent = new Intent();
+        try {
+            intent.setClass(context, Class.forName(className));
+            context.startActivity(intent);
+        } catch (ClassNotFoundException e) {
+            Logger.error(e);
+        }
+    }
 }
