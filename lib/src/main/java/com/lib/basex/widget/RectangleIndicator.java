@@ -10,6 +10,10 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.Nullable;
 
@@ -120,8 +124,17 @@ public class RectangleIndicator extends View {
 
     public void initProgressBarWidth(int width) {
         this.progressBarWidth = width;
-        postInvalidate();
-        setTranslationX(startP);
+//        postInvalidate();
+        ViewGroup.LayoutParams layoutParams = getLayoutParams();
+        if (layoutParams instanceof LinearLayout.LayoutParams) {
+            ((LinearLayout.LayoutParams) layoutParams).leftMargin = startP;
+        }else if(layoutParams instanceof RelativeLayout.LayoutParams){
+            ((RelativeLayout.LayoutParams) layoutParams).leftMargin = startP;
+        }else if(layoutParams instanceof FrameLayout.LayoutParams){
+            ((FrameLayout.LayoutParams) layoutParams).leftMargin = startP;
+        }
+        startP = 0;
+//        setTranslationX(startP);
     }
 
     public void setProgress(int progress, int max) {

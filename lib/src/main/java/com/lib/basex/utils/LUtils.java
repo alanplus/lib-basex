@@ -242,24 +242,24 @@ public class LUtils {
     }
 
     public static void setSpannableTextColor(SpannableString string, int start, int len, int color) {
-        string.setSpan(new ForegroundColorSpan(color), start, start + len,  Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        string.setSpan(new ForegroundColorSpan(color), start, start + len, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
     }
 
     public static void setSpannableTextSize(SpannableString string, int start, int len, int size) {
-        string.setSpan(new AbsoluteSizeSpan(size, true), start, start + len,  Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        string.setSpan(new AbsoluteSizeSpan(size, true), start, start + len, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
     }
 
 
     public static void setSpannableTextBold(SpannableString string, int start, int len) {
-        string.setSpan(new StyleSpan(Typeface.BOLD), start, start + len,  Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        string.setSpan(new StyleSpan(Typeface.BOLD), start, start + len, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
     }
 
     public static void setSpannableTextItalic(SpannableString string, int start, int len) {
-        string.setSpan(new StyleSpan(Typeface.ITALIC), start, start + len,  Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        string.setSpan(new StyleSpan(Typeface.ITALIC), start, start + len, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
     }
 
     public static void setSpannableTextItalicAndBold(SpannableString string, int start, int len) {
-        string.setSpan(new StyleSpan(Typeface.BOLD_ITALIC), start, start + len,  Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        string.setSpan(new StyleSpan(Typeface.BOLD_ITALIC), start, start + len, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
     }
 
     public static boolean isEnglishChar(String s) {
@@ -287,6 +287,16 @@ public class LUtils {
             return true;
         }
         return false;
+    }
+
+    public static <T> T newTClass(Class<T> clazz) {
+        T t = null;
+        try {
+            t = clazz.newInstance();
+        } catch (Exception e) {
+            Logger.error(e);
+        }
+        return t;
     }
 
 }
