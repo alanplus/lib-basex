@@ -17,13 +17,15 @@ public class LActivityUtils {
         context.startActivity(intent);
     }
 
-    public static void startActivity(Context context, String className) {
+    public static Intent getIntent(Context context, String tagName) {
         Intent intent = new Intent();
         try {
-            intent.setClass(context, Class.forName(className));
-            context.startActivity(intent);
+            String name = LUtils.getMetaData(context, tagName);
+            intent.setClass(context, Class.forName(name));
+            return intent;
         } catch (ClassNotFoundException e) {
             Logger.error(e);
         }
+        return intent;
     }
 }
