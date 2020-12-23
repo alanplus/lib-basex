@@ -23,7 +23,7 @@ public class LActivityUtils {
             String name = LUtils.getMetaData(context, tagName);
             intent.setClass(context, Class.forName(name));
             return intent;
-        } catch (ClassNotFoundException e) {
+        } catch (Exception e) {
             Logger.error(e);
         }
         return intent;
