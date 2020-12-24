@@ -3,6 +3,7 @@ package com.lib.basex;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Handler;
+import android.text.TextUtils;
 
 import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
@@ -10,7 +11,12 @@ import androidx.multidex.MultiDexApplication;
 import com.king.thread.nevercrash.NeverCrash;
 import com.lib.basex.global.LActivityLifecycleManager;
 import com.lib.basex.global.OnActivityListener;
+import com.lib.basex.utils.LClassUtils;
+import com.lib.basex.utils.LUtils;
 import com.lib.basex.utils.Logger;
+
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * @author Alan
@@ -27,12 +33,15 @@ public abstract class LApplication extends MultiDexApplication implements NeverC
 
     public boolean mInitSuccess;
 
+    protected HashMap<String, Class> mClassList;
+
     @Override
     public void onCreate() {
         super.onCreate();
         app = this;
         handler = new Handler();
         mInitSuccess = true;
+        initClassList();
         NeverCrash.init(this);
         registerActivityManager();
         try {
@@ -109,10 +118,40 @@ public abstract class LApplication extends MultiDexApplication implements NeverC
 
     /**
      * 创建页面
+     *
      * @param activity
      */
     @Override
     public void onCreateListener(Activity activity) {
 
+    }
+
+    public Class getActivity(String tag) {
+        if (null == mClassList) {
+            initClassList();
+        }
+        return mClassList.get(tag);
+    }
+
+    private void initClassList() {
+        if (null == mClassList) {
+            mClassList = new HashMap<>();
+            String data = LUtils.getMetaData(this, "activity_package");
+            if (!TextUtils.isEmpty(data)) {
+                List<String> list = LClassUtils.getClazzName(data, true);
+                for (String s : list) {
+                    try {
+                        Class<?> aClass = Class.forName(s);
+                        com.lib.basex.annotation.Activity annotation = aClass.getAnnotation(com.lib.basex.annotation.Activity.class);
+                        if (null != annotation) {
+                            String value = annotation.value();
+                            mClassList.put(value, aClass);
+                        }
+                    } catch (Exception e) {
+                        Logger.error(e);
+                    }
+                }
+            }
+        }
     }
 }

@@ -18,9 +18,11 @@ import android.widget.TextView;
 import com.lib.basex.activity.LActivity;
 import com.lib.basex.activity.LViewModel;
 import com.lib.basex.activity.LWebViewActivity;
+import com.lib.basex.annotation.Activity;
 import com.lib.basex.dialog.LightLoadingDialog;
 import com.lib.test.databinding.ActivityMainBinding;
 
+@Activity("aaa")
 public class MainActivity extends LActivity<AViewModel, ActivityMainBinding> {
 
 
