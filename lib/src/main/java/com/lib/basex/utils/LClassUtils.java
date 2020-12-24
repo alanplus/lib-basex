@@ -1,5 +1,7 @@
 package com.lib.basex.utils;
 
+import android.content.Context;
+
 import androidx.annotation.NonNull;
 
 import java.io.File;
@@ -13,6 +15,8 @@ import java.util.Enumeration;
 import java.util.List;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
+
+import dalvik.system.DexFile;
 
 /**
  * @author Alan
@@ -170,6 +174,24 @@ public class LClassUtils {
             }
         }
         return result;
+    }
+
+    public static List<String> getAndroidClasses(Context mContext, String packageName) {
+        ArrayList<String> classes = new ArrayList<>();
+        try {
+            String packageCodePath = mContext.getPackageCodePath();
+            DexFile df = new DexFile(packageCodePath);
+            String regExp = "^" + packageName + ".\\w+$";
+            for (Enumeration<String> i = df.entries(); i.hasMoreElements(); ) {
+                String className = (String) i.nextElement();
+                if (className.matches(regExp)) {
+                    classes.add(className);
+                }
+            }
+        } catch (Exception e) {
+            Logger.error(e);
+        }
+        return classes;
     }
 
 }

@@ -138,7 +138,7 @@ public abstract class LApplication extends MultiDexApplication implements NeverC
             mClassList = new HashMap<>();
             String data = LUtils.getMetaData(this, "activity_package");
             if (!TextUtils.isEmpty(data)) {
-                List<String> list = LClassUtils.getClazzName(data, true);
+                List<String> list = LClassUtils.getAndroidClasses(this, data);
                 for (String s : list) {
                     try {
                         Class<?> aClass = Class.forName(s);

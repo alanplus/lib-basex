@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
+import com.lib.basex.LApplication;
+
 /**
  * @author Alan
  * 时 间：2020/9/16
@@ -18,11 +20,16 @@ public class LActivityUtils {
         context.startActivity(intent);
     }
 
+    public static void startActivity(Context context, String tagName) {
+        Intent intent = getIntent(context, tagName);
+        context.startActivity(intent);
+    }
+
     public static Intent getIntent(Context context, String tagName) {
         Intent intent = new Intent();
         try {
-            String name = LUtils.getMetaData(context, tagName);
-            intent.setClass(context, Class.forName(name));
+            Class aClass = LApplication.app.getActivity(tagName);
+            intent.setClass(context, aClass);
             return intent;
         } catch (Exception e) {
             Logger.error(e);
