@@ -9,6 +9,7 @@ import android.widget.TextView;
 public interface IFailureView {
 
     void setText(String text);
+    void setCode(int  code);
     void setOnRetryClickListener(View.OnClickListener onRetryClickListener);
     void setVisible(boolean isShow);
     View getView();

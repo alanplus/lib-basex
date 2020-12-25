@@ -54,6 +54,12 @@ public class StateHelper implements IStateView {
     }
 
     @Override
+    public void showFailureState(int code, String text, boolean isRetry) {
+        showFailureState(text, isRetry);
+        iFailureView.setCode(code);
+    }
+
+    @Override
     public void showSuccessState() {
         reset();
     }

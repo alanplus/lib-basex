@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer;
 import com.lib.basex.R;
 import com.lib.basex.databinding.LActivityStateBinding;
 import com.lib.basex.dialog.loading.LoadingDialog;
+import com.lib.basex.widget.statelayout.StateModel;
 
 /**
  * @author Alan
@@ -32,25 +33,18 @@ public abstract class LStateActivity<T extends LStateViewModel, D extends ViewDa
     @Override
     protected void onCreate() {
         super.onCreate();
-        t.state.observe(this, new Observer<Integer>() {
-            @Override
-            public void onChanged(Integer integer) {
-                switch (integer) {
-                    case LStateViewModel.STATE_LOADING:
-                        binding.stateLayout.showLoadingState(t.getLoadingText());
-                        break;
-                    case LStateViewModel.STATE_SUCCESS:
-                        binding.stateLayout.showSuccessState();
-                        break;
-                    case LStateViewModel.STATE_FAILURE:
-                        binding.stateLayout.showFailureState(t.getFailureText(), t.isRetry);
-                        if (t.isRetry) {
-                            binding.stateLayout.getRetryView().setOnClickListener(t.getRetryOnClickListener());
-                        } else {
-                            binding.stateLayout.getRetryView().setOnClickListener(null);
-                        }
-                        break;
-                }
+        t.state.observe(this, stateModel -> {
+            switch (stateModel.state) {
+                case LStateViewModel.STATE_LOADING:
+                    binding.stateLayout.showLoadingState(stateModel.text);
+                    break;
+                case LStateViewModel.STATE_SUCCESS:
+                    binding.stateLayout.showSuccessState();
+                    break;
+                case LStateViewModel.STATE_FAILURE:
+                    binding.stateLayout.showFailureState(stateModel.code, stateModel.text, stateModel.isRetry);
+                    binding.stateLayout.getRetryView().setOnClickListener(stateModel.onClickListener);
+                    break;
             }
         });
 

@@ -11,46 +11,47 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 
 import com.lib.basex.R;
+import com.lib.basex.databinding.LStateFailureBinding;
+import com.lib.basex.widget.baselayout.LLinearLayout;
 import com.lib.basex.widget.statelayout.api.IFailureView;
 
 
 /**
  * Created by Mouse on 2018/10/22.
  */
-public class LFailureStateView extends LinearLayout implements IFailureView {
-
-    private TextView textFailure, textRetry;
+public class LFailureStateView extends LLinearLayout<Object, LStateFailureBinding> implements IFailureView {
 
     public LFailureStateView(Context context) {
         super(context);
-        initLayout();
     }
 
     public LFailureStateView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        initLayout();
     }
 
-    private void initLayout() {
-        LayoutInflater.from(getContext()).inflate(R.layout.l_state_failure, this);
-        textFailure = findViewById(R.id.view_state_text);
-        textRetry = findViewById(R.id.retry);
-        setBackgroundColor(Color.WHITE);
+    @Override
+    public int getContentId() {
+        return R.layout.l_state_failure;
     }
 
     @Override
     public void setText(String text) {
-        textFailure.setText(text);
+        d.viewStateText.setText(text);
+    }
+
+    @Override
+    public void setCode(int code) {
+
     }
 
     @Override
     public void setOnRetryClickListener(OnClickListener onRetryClickListener) {
-        textRetry.setOnClickListener(onRetryClickListener);
+        d.viewStateText.setOnClickListener(onRetryClickListener);
     }
 
     @Override
     public void setVisible(boolean isShow) {
-        textRetry.setVisibility(isShow ? View.VISIBLE : View.GONE);
+        d.retry.setVisibility(isShow ? View.VISIBLE : View.GONE);
     }
 
     @Override
@@ -60,6 +61,6 @@ public class LFailureStateView extends LinearLayout implements IFailureView {
 
     @Override
     public TextView getRetryTextView() {
-        return textRetry;
+        return d.retry;
     }
 }

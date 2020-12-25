@@ -43,6 +43,11 @@ public class StateRelativeLayout extends RelativeLayout implements IStateView {
     }
 
     @Override
+    public void showFailureState(int code, String text, boolean isRetry) {
+        stateHelper.showFailureState(code, text, isRetry);
+    }
+
+    @Override
     public void showSuccessState() {
         stateHelper.showSuccessState();
     }

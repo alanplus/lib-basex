@@ -3,9 +3,12 @@ package com.lib.basex.activity;
 import android.view.View;
 
 import androidx.annotation.IntDef;
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+
+import com.lib.basex.widget.statelayout.StateModel;
 
 /**
  * @author Alan
@@ -24,7 +27,6 @@ public class LStateViewModel extends LViewModel implements LifecycleObserver, Vi
 
     public String failureText = "加载失败，请重试";
     public String NO_NET = "网络无效，请重试";
-    public boolean isRetry = true;
 
     @Override
     public void onClick(View view) {
@@ -32,22 +34,42 @@ public class LStateViewModel extends LViewModel implements LifecycleObserver, Vi
     }
 
     @IntDef({STATE_LOADING, STATE_SUCCESS, STATE_FAILURE})
-    @interface State {
+    public @interface State {
     }
 
-    public MutableLiveData<Integer> state = new MutableLiveData<>(STATE_SUCCESS);
+    public MutableLiveData<StateModel> state = new MutableLiveData<>();
     public MutableLiveData<LLoadingDialogInfo> loadingInfo = new MutableLiveData<>();
 
     public void showLoadingState() {
-        state.setValue(STATE_LOADING);
+        showLoadingState("正在加载");
     }
+
+    public void showLoadingState(String text) {
+        StateModel stateModel = new StateModel(STATE_LOADING);
+        stateModel.text = text;
+        state.setValue(stateModel);
+    }
+
+    public void showFailureState(String text) {
+        showFailureState(0, getFailureText(), null);
+    }
+
+    public void showFailureState(String text, View.OnClickListener onClickListener) {
+        showFailureState(0, getFailureText(), onClickListener);
+    }
+
+    public void showFailureState(int code, String text, View.OnClickListener onClickListener) {
+        StateModel stateModel = new StateModel(STATE_FAILURE);
+        stateModel.code = code;
+        stateModel.text = text;
+        stateModel.isRetry = null != onClickListener;
+        stateModel.onClickListener = onClickListener;
+        state.setValue(stateModel);
+    }
+
 
     public void showSuccessState() {
-        state.setValue(STATE_SUCCESS);
-    }
-
-    public void showFailureState() {
-        state.setValue(STATE_FAILURE);
+        state.setValue(new StateModel(STATE_SUCCESS));
     }
 
 
@@ -57,10 +79,6 @@ public class LStateViewModel extends LViewModel implements LifecycleObserver, Vi
 
     public String getFailureText() {
         return failureText;
-    }
-
-    public boolean isRetry() {
-        return isRetry;
     }
 
     public View.OnClickListener getRetryOnClickListener() {

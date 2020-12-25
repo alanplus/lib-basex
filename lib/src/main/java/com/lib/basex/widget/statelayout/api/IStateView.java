@@ -9,7 +9,12 @@ import android.widget.TextView;
 public interface IStateView {
 
     void showLoadingState(String text);
+
     void showFailureState(String text, boolean isRetry);
+
+    void showFailureState(int code, String text, boolean isRetry);
+
     void showSuccessState();
+
     TextView getRetryView();
 }

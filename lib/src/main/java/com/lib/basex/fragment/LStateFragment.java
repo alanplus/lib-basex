@@ -40,43 +40,33 @@ public abstract class LStateFragment<VM extends LStateViewModel, D extends ViewD
     @Override
     public void initView(@Nullable Bundle savedInstanceState) {
         super.initView(savedInstanceState);
-        vm.state.observe(this, new Observer<Integer>() {
-            @Override
-            public void onChanged(Integer integer) {
-                switch (integer) {
-                    case LStateViewModel.STATE_LOADING:
-                        binding.stateLayout.showLoadingState(vm.getLoadingText());
-                        break;
-                    case LStateViewModel.STATE_SUCCESS:
-                        binding.stateLayout.showSuccessState();
-                        break;
-                    case LStateViewModel.STATE_FAILURE:
-                        binding.stateLayout.showFailureState(vm.getFailureText(), vm.isRetry);
-                        if (vm.isRetry) {
-                            binding.stateLayout.getRetryView().setOnClickListener(vm.getRetryOnClickListener());
-                        } else {
-                            binding.stateLayout.getRetryView().setOnClickListener(null);
-                        }
-                        break;
-                }
+        vm.state.observe(this, stateModel -> {
+            switch (stateModel.state) {
+                case LStateViewModel.STATE_LOADING:
+                    binding.stateLayout.showLoadingState(stateModel.text);
+                    break;
+                case LStateViewModel.STATE_SUCCESS:
+                    binding.stateLayout.showSuccessState();
+                    break;
+                case LStateViewModel.STATE_FAILURE:
+                    binding.stateLayout.showFailureState(stateModel.code, stateModel.text, stateModel.isRetry);
+                    binding.stateLayout.getRetryView().setOnClickListener(stateModel.onClickListener);
+                    break;
             }
         });
 
-        vm.loadingInfo.observe(this, new Observer<LLoadingDialogInfo>() {
-            @Override
-            public void onChanged(LLoadingDialogInfo lLoadingDialogInfo) {
-                switch (lLoadingDialogInfo.state) {
-                    case 1:
-                        showLoadingDialog(lLoadingDialogInfo);
-                        break;
-                    case 2:
-                    case 3:
-                        dismissSuccessLoadingDialog(lLoadingDialogInfo);
-                        break;
-                    case 4:
-                        dismissImmediately();
-                        break;
-                }
+        vm.loadingInfo.observe(this, lLoadingDialogInfo -> {
+            switch (lLoadingDialogInfo.state) {
+                case 1:
+                    showLoadingDialog(lLoadingDialogInfo);
+                    break;
+                case 2:
+                case 3:
+                    dismissSuccessLoadingDialog(lLoadingDialogInfo);
+                    break;
+                case 4:
+                    dismissImmediately();
+                    break;
             }
         });
     }
