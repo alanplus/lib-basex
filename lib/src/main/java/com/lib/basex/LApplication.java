@@ -9,6 +9,7 @@ import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
 
 import com.king.thread.nevercrash.NeverCrash;
+import com.lib.basex.annotation.AppAnnotation;
 import com.lib.basex.global.LActivityLifecycleManager;
 import com.lib.basex.global.OnActivityListener;
 import com.lib.basex.utils.LClassUtils;
@@ -35,6 +36,9 @@ public abstract class LApplication extends MultiDexApplication implements NeverC
 
     protected HashMap<String, Class> mClassList;
 
+    protected boolean isDebug = false;
+    protected String tag = "l_base_x";
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -42,13 +46,26 @@ public abstract class LApplication extends MultiDexApplication implements NeverC
         handler = new Handler();
         mInitSuccess = true;
         initClassList();
-        NeverCrash.init(this);
+        getAnnotation();
         registerActivityManager();
         try {
             init();
         } catch (Throwable e) {
             uncaughtException(null, e);
             mInitSuccess = false;
+        }
+    }
+
+    private void getAnnotation() {
+        Class<? extends LApplication> aClass = getClass();
+        AppAnnotation annotation = aClass.getAnnotation(AppAnnotation.class);
+        if (null != annotation) {
+            if (annotation.neverCrash()) {
+                NeverCrash.init(this);
+            }
+            isDebug = annotation.isDebug();
+            tag = annotation.log();
+
         }
     }
 
@@ -75,7 +92,7 @@ public abstract class LApplication extends MultiDexApplication implements NeverC
      * @return
      */
     public boolean isDebug() {
-        return true;
+        return isDebug;
     }
 
     /**
@@ -84,7 +101,7 @@ public abstract class LApplication extends MultiDexApplication implements NeverC
      * @return
      */
     public String getLogTag() {
-        return "l_base_x";
+        return tag;
     }
 
     /**

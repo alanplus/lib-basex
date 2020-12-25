@@ -43,13 +43,9 @@ public class LClassUtils {
     }
 
     /**
-     * 26
      * 查找包下的所有类的名字
-     * 27
      *
-     * @param packageName          28
      * @param showChildPackageFlag 是否需要显示子包内容
-     *                             29
      * @return List集合，内容为类的全名
      * 30
      */
@@ -194,4 +190,17 @@ public class LClassUtils {
         return classes;
     }
 
-}
+    public static List<Class<?>> getSubClass(Class<?> clazz) {
+        List<Class<?>> list = new ArrayList<>();
+
+        return list;
+    }
+
+//        for (Class < ? > c : getClasses(cls)) {
+//            if (cls.isAssignableFrom(c) && !cls.equals(c)) {
+//                classes.add(c);
+//            }
+//
+//        }
+
+    }
