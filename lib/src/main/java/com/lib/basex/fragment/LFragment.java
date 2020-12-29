@@ -33,7 +33,6 @@ public abstract class LFragment<VM extends LViewModel, D extends ViewDataBinding
 
     @Nullable
     @Override
-
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         vm = (VM) new ViewModelProvider(requireActivity()).get(LClassUtils.getTClassObject(this));
         initContentView(inflater, container);

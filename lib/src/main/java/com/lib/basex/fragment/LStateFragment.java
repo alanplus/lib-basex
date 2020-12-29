@@ -2,6 +2,7 @@ package com.lib.basex.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
@@ -10,12 +11,14 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.lib.basex.R;
 import com.lib.basex.activity.LLoadingDialogInfo;
 import com.lib.basex.activity.LStateViewModel;
 import com.lib.basex.databinding.LFragmentStateBinding;
 import com.lib.basex.dialog.loading.LoadingDialog;
+import com.lib.basex.utils.LClassUtils;
 
 import java.util.Objects;
 
@@ -37,10 +40,19 @@ public abstract class LStateFragment<VM extends LStateViewModel, D extends ViewD
         binding.stateLayout.addView(d.getRoot(), new RelativeLayout.LayoutParams(-1, -1));
     }
 
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        vm = (VM) new ViewModelProvider(requireActivity()).get(LClassUtils.getTClassObject(this));
+        initContentView(inflater, container);
+        initView(savedInstanceState);
+        return binding.getRoot();
+    }
+
     @Override
     public void initView(@Nullable Bundle savedInstanceState) {
         super.initView(savedInstanceState);
-        vm.state.observe(this, stateModel -> {
+        vm.state.observe(getViewLifecycleOwner(), stateModel -> {
             switch (stateModel.state) {
                 case LStateViewModel.STATE_LOADING:
                     binding.stateLayout.showLoadingState(stateModel.text);
@@ -55,7 +67,7 @@ public abstract class LStateFragment<VM extends LStateViewModel, D extends ViewD
             }
         });
 
-        vm.loadingInfo.observe(this, lLoadingDialogInfo -> {
+        vm.loadingInfo.observe(getViewLifecycleOwner(), lLoadingDialogInfo -> {
             switch (lLoadingDialogInfo.state) {
                 case 1:
                     showLoadingDialog(lLoadingDialogInfo);

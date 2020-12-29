@@ -186,4 +186,8 @@ public class LRecycleViewProxy<T> {
     public boolean autoRefresh(int delay) {
         return mSmartRefreshLayout.autoRefresh(delay);
     }
+
+    public List<T> getListData() {
+        return mListData;
+    }
 }
