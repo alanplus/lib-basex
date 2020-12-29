@@ -3,6 +3,7 @@ package com.lib.basex.widget.baselayout;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
@@ -31,7 +32,7 @@ public abstract class LLinearLayout<T, D extends ViewDataBinding> extends Linear
     }
 
     protected void initView(@Nullable AttributeSet attrs) {
-        d =  DataBindingUtil.inflate(LayoutInflater.from(getContext()), getContentId(), this, true);
+        d = DataBindingUtil.inflate(LayoutInflater.from(getContext()), getContentId(), this, true);
 
     }
 
@@ -40,4 +41,12 @@ public abstract class LLinearLayout<T, D extends ViewDataBinding> extends Linear
     }
 
     public abstract int getContentId();
+
+    @Override
+    public void setVisibility(int visibility) {
+        super.setVisibility(visibility);
+        if(null!=d){
+            d.getRoot().setVisibility(View.GONE);
+        }
+    }
 }

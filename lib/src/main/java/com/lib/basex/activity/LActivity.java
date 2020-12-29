@@ -20,6 +20,9 @@ import com.lib.basex.utils.statusbar.LStatusBar;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * @author Alan
@@ -33,6 +36,8 @@ public abstract class LActivity<T extends LViewModel, D extends ViewDataBinding>
 
     protected static IActivity iActivity;
 
+    public static List<Activity> activityList = new ArrayList<>();
+
     public static void register(IActivity iActivity) {
         LActivity.iActivity = iActivity;
     }
@@ -40,6 +45,7 @@ public abstract class LActivity<T extends LViewModel, D extends ViewDataBinding>
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        activityList.add(this);
         initContentView();
         onCreate();
         if (configEvenBus()) {
@@ -143,6 +149,7 @@ public abstract class LActivity<T extends LViewModel, D extends ViewDataBinding>
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        activityList.remove(this);
         if (configEvenBus()) {
             EventBus.getDefault().unregister(this);
         }

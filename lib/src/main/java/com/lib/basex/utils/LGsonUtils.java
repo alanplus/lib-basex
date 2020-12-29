@@ -27,7 +27,7 @@ public class LGsonUtils {
      * @param classOfT
      * @return
      */
-    public static Object stringToObject(String json, Class classOfT) {
+    public static <T> T stringToObject(String json, Class<T> classOfT) {
         return mGson.fromJson(json, classOfT);
     }
 

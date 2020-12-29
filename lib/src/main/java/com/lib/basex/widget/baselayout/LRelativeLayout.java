@@ -3,6 +3,7 @@ package com.lib.basex.widget.baselayout;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
@@ -38,4 +39,12 @@ public abstract class LRelativeLayout<T, D extends ViewDataBinding> extends Rela
     }
 
     public abstract int getContentId();
+
+    @Override
+    public void setVisibility(int visibility) {
+        super.setVisibility(visibility);
+        if(null!=d){
+            d.getRoot().setVisibility(View.GONE);
+        }
+    }
 }
