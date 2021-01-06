@@ -54,5 +54,10 @@ public class StateLinearLayout extends LinearLayout implements IStateView {
         return stateHelper.getRetryView();
     }
 
+    @Override
+    public void setFailureImage(int drawableId) {
+        stateHelper.setFailureImage(drawableId);
+    }
+
 
 }

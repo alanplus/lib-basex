@@ -1,6 +1,7 @@
 package com.lib.basex.widget.statelayout.api;
 
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -14,4 +15,6 @@ public interface IFailureView {
     void setVisible(boolean isShow);
     View getView();
     TextView getRetryTextView();
+
+    ImageView getImageView();
 }

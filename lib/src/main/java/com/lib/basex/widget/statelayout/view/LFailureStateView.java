@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -62,5 +63,10 @@ public class LFailureStateView extends LLinearLayout<Object, LStateFailureBindin
     @Override
     public TextView getRetryTextView() {
         return d.retry;
+    }
+
+    @Override
+    public ImageView getImageView() {
+        return d.viewStateImg;
     }
 }

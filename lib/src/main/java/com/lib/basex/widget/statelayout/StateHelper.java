@@ -3,6 +3,7 @@ package com.lib.basex.widget.statelayout;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -24,6 +25,8 @@ public class StateHelper implements IStateView {
 
     protected ILoadingView iLoadingView;
     protected IFailureView iFailureView;
+
+    private int drawableId;
 
     public StateHelper(@NonNull ViewGroup viewGroup) {
         this.viewGroup = viewGroup;
@@ -69,6 +72,12 @@ public class StateHelper implements IStateView {
         return null == iFailureView ? null : iFailureView.getRetryTextView();
     }
 
+    @Override
+    public void setFailureImage(int drawableId) {
+        this.drawableId = drawableId;
+    }
+
+
     public void reset() {
         int childCount = viewGroup.getChildCount();
         for (int i = 0; i < childCount; i++) {
@@ -90,6 +99,9 @@ public class StateHelper implements IStateView {
     protected View generateFailureView() {
         if (null == iFailureView) {
             iFailureView = StateViewConfig.getInstance().getFailureView(viewGroup.getContext());
+        }
+        if (drawableId != 0) {
+            iFailureView.getImageView().setImageResource(drawableId);
         }
         return iFailureView.getView();
     }

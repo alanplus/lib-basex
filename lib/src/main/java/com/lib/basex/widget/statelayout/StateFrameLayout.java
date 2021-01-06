@@ -50,4 +50,9 @@ public class StateFrameLayout extends FrameLayout implements IStateView {
     public TextView getRetryView() {
         return stateHelper.getRetryView();
     }
+
+    @Override
+    public void setFailureImage(int drawableId) {
+        stateHelper.setFailureImage(drawableId);
+    }
 }
