@@ -19,13 +19,13 @@ import java.util.List;
  */
 public class LGsonUtils {
 
-    private static Gson mGson;
+    private static Gson mGson = new Gson();
 
-    static {
-        GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.excludeFieldsWithoutExposeAnnotation();
-        mGson = gsonBuilder.create();
-    }
+//    static {
+//        GsonBuilder gsonBuilder = new GsonBuilder();
+//        gsonBuilder.excludeFieldsWithoutExposeAnnotation();
+//        mGson = gsonBuilder.create();
+//    }
 
     /**
      * 将json字符串转化成实体对象
