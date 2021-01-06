@@ -43,8 +43,8 @@ public abstract class LFrameLayout<T, D extends ViewDataBinding> extends FrameLa
     @Override
     public void setVisibility(int visibility) {
         super.setVisibility(visibility);
-        if(null!=d){
-            d.getRoot().setVisibility(View.GONE);
+        if (null != d) {
+            d.getRoot().setVisibility(visibility);
         }
     }
 }

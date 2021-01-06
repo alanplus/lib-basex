@@ -46,7 +46,7 @@ public abstract class LLinearLayout<T, D extends ViewDataBinding> extends Linear
     public void setVisibility(int visibility) {
         super.setVisibility(visibility);
         if(null!=d){
-            d.getRoot().setVisibility(View.GONE);
+            d.getRoot().setVisibility(visibility);
         }
     }
 }

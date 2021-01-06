@@ -44,7 +44,7 @@ public abstract class LRelativeLayout<T, D extends ViewDataBinding> extends Rela
     public void setVisibility(int visibility) {
         super.setVisibility(visibility);
         if(null!=d){
-            d.getRoot().setVisibility(View.GONE);
+            d.getRoot().setVisibility(visibility);
         }
     }
 }
