@@ -16,6 +16,8 @@ public class StateModel {
 
     public String text;
 
+    public int failureDrawable;
+
     /**
      * 失败 信息
      */

@@ -42,6 +42,9 @@ public abstract class LStateActivity<T extends LStateViewModel, D extends ViewDa
                     binding.stateLayout.showSuccessState();
                     break;
                 case LStateViewModel.STATE_FAILURE:
+                    if (stateModel.failureDrawable != 0) {
+                        binding.stateLayout.setFailureImage(stateModel.failureDrawable);
+                    }
                     binding.stateLayout.showFailureState(stateModel.code, stateModel.text, stateModel.isRetry);
                     binding.stateLayout.getRetryView().setOnClickListener(stateModel.onClickListener);
                     break;
