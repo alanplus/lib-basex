@@ -8,6 +8,9 @@ import androidx.annotation.NonNull;
 import com.lib.basex.utils.LUtils;
 import com.lib.basex.utils.Logger;
 
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
@@ -26,6 +29,8 @@ import io.reactivex.schedulers.Schedulers;
  * 简 述：<功能简述>
  */
 public class LThreadService {
+
+    private static List<WeakReference<Disposable>> list = new ArrayList<>();
 
     /**
      * 主线程 与子线程 交互
@@ -60,13 +65,35 @@ public class LThreadService {
      *
      * @param runnable
      */
-    @SuppressLint("CheckResult")
-    public static void runOnMainThread(@NonNull Runnable runnable) {
-        Observable.just(1).observeOn(AndroidSchedulers.mainThread()).subscribe(integer -> runnable.run());
+    public static void runOnMainThread(@NonNull Runnable runnable, boolean isSave) {
+        Disposable subscribe = Observable.just(1).observeOn(AndroidSchedulers.mainThread()).subscribe(integer -> runnable.run());
+        if (isSave) {
+            list.add(new WeakReference<>(subscribe));
+        }
     }
 
-    @SuppressLint("CheckResult")
+    public static void runOnMainThread(@NonNull Runnable runnable) {
+        runOnMainThread(runnable, false);
+    }
+
+    public static void runDelay(Runnable runnable, long time, boolean isSave) {
+        Disposable subscribe = Observable.timer(time, TimeUnit.MILLISECONDS).observeOn(AndroidSchedulers.mainThread()).subscribe(aLong -> runnable.run());
+        if (isSave) {
+            list.add(new WeakReference<>(subscribe));
+        }
+    }
+
     public static void runDelay(Runnable runnable, long time) {
-        Observable.timer(time, TimeUnit.MILLISECONDS).observeOn(AndroidSchedulers.mainThread()).subscribe(aLong -> runnable.run());
+        runDelay(runnable, time, false);
+    }
+
+    public static void clear() {
+        for (WeakReference<Disposable> weakReference : list) {
+            Disposable disposable = weakReference.get();
+            if (null != disposable && !disposable.isDisposed()) {
+                disposable.dispose();
+            }
+        }
+        list.clear();
     }
 }

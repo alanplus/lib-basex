@@ -51,11 +51,11 @@ public class LStateViewModel extends LViewModel implements LifecycleObserver, Vi
     }
 
     public void showFailureState(String text) {
-        showFailureState(0, getFailureText(), null,0);
+        showFailureState(0, text, null,0);
     }
 
     public void showFailureState(String text, View.OnClickListener onClickListener) {
-        showFailureState(0, getFailureText(), onClickListener, 0);
+        showFailureState(0, text, onClickListener, 0);
     }
 
     public void showFailureState(int code, String text, View.OnClickListener onClickListener, int drawableId) {
