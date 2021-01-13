@@ -13,8 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.lib.basex.R;
@@ -122,6 +124,14 @@ public class RectangleIndicator extends View {
         return h + getPaddingTop() + getPaddingBottom() + indicatorHeight;
     }
 
+    public void setProgressBar(@NonNull View progressBar) {
+        progressBar.post(() -> {
+            int width = progressBar.getWidth();
+            initProgressBarWidth(width);
+            setVisibility(View.VISIBLE);
+        });
+    }
+
     public void initProgressBarWidth(int width) {
         this.progressBarWidth = width;
 //        postInvalidate();
@@ -133,6 +143,7 @@ public class RectangleIndicator extends View {
         } else if (layoutParams instanceof FrameLayout.LayoutParams) {
             ((FrameLayout.LayoutParams) layoutParams).leftMargin = startP;
         }
+        requestLayout();
     }
 
     public void setProgress(int progress, int max) {
