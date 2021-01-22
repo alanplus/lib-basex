@@ -23,7 +23,9 @@ public class MiUIStatusBarTools implements IStatusBarTools {
 
     @Override
     public boolean setStatusBarColor(Activity activity, int bgColor, boolean isWhite) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return false;
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT){
+            return false;
+        }
         if (setStatusBarColor(activity, isWhite)) {
             return setStatusBarColor(activity, bgColor);
         }
@@ -88,7 +90,9 @@ public class MiUIStatusBarTools implements IStatusBarTools {
 
     @Override
     public boolean setStatusBarColor(Activity activity, boolean isWhite) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return false;
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+            return false;
+        }
         Window window = activity.getWindow();
         if (window != null) {
             Class clazz = window.getClass();
@@ -98,9 +102,11 @@ public class MiUIStatusBarTools implements IStatusBarTools {
                 int darkModeFlag = field.getInt(layoutParams);
                 Method extraFlagField = clazz.getMethod("setExtraFlags", Integer.TYPE, Integer.TYPE);
                 if (!isWhite) {
-                    extraFlagField.invoke(window, darkModeFlag, darkModeFlag);//状态栏透明且黑色字体
+                    //状态栏透明且黑色字体
+                    extraFlagField.invoke(window, darkModeFlag, darkModeFlag);
                 } else {
-                    extraFlagField.invoke(window, 0, darkModeFlag);//清除黑色字体
+                    //清除黑色字体
+                    extraFlagField.invoke(window, 0, darkModeFlag);
                 }
                 if (Build.VERSION.SDK_INT >= 23) {
                     if (!isWhite) {

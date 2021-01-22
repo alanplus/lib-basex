@@ -10,6 +10,7 @@ import android.widget.ScrollView;
  * 简 述：
  * scrollview的滑动监听事件setOnScrollChangeListener这个方法是在6.0以上才能用的。
  * 为了考虑低版本的的需求，要重写ScrollView把接口开放出来。
+ * 应用：支持悬停
  */
 public class ObservableScrollView extends ScrollView {
 

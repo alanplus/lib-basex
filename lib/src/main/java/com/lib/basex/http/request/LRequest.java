@@ -232,7 +232,7 @@ public abstract class LRequest {
 
             @Override
             public void onResponse(final Call call, final Response response) {
-                if (null != onHttpCallBack)
+                if (null != onHttpCallBack) {
                     try {
                         final ApiResult apiResult = handlerResponse(response, callBack);
                         LThreadService.runOnMainThread(() -> onHttpCallBack.onSuccess(apiResult.originText, apiResult));
@@ -240,7 +240,7 @@ public abstract class LRequest {
                         Logger.error(e);
                         onError(onHttpCallBack, null, e);
                     }
-
+                }
             }
         });
     }

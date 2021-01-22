@@ -1,6 +1,8 @@
 package com.lib.basex.utils;
 
 import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -52,5 +54,13 @@ public class LViewUtils {
             bottomDrawable.setBounds(0, 0, bottomDrawable.getMinimumWidth(), bottomDrawable.getMinimumHeight());
         }
         textView.setCompoundDrawables(leftDrawable, topDrawable, rightDrawable, bottomDrawable);
+    }
+
+    public static void setBackground(Drawable drawable, @NonNull View view) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            view.setBackground(drawable);
+        } else {
+            view.setBackgroundDrawable(drawable);
+        }
     }
 }

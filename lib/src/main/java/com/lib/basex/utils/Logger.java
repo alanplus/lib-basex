@@ -1,5 +1,6 @@
 package com.lib.basex.utils;
 
+import android.content.Context;
 import android.os.Environment;
 import android.text.TextUtils;
 import android.util.Log;
@@ -17,9 +18,12 @@ public class Logger {
 
 
     public static void writeFile(String text) {
-        if (!LApplication.app.isDebug())
+        if (!LApplication.app.isDebug()) {
             return;
+        }
+//        LApplication.app.getExternalFilesDir(null)
         String path = Environment.getExternalStorageDirectory().getPath() + "/a.txt";
+
         File file = new File(path);
         if (file.exists()) {
             file.delete();

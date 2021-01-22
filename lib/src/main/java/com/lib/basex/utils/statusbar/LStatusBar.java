@@ -69,7 +69,7 @@ public class LStatusBar implements IStatusBarTools {
         } catch (Exception e) {
             return false;
         }
-        return Build.MANUFACTURER.equals("Xiaomi");
+        return "Xiaomi".equals(Build.MANUFACTURER);
     }
 
     public static boolean isFlyme() {

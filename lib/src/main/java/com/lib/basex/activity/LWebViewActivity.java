@@ -115,8 +115,9 @@ public class LWebViewActivity extends LStateActivity<LStateViewModel, LActivityW
         });
 
         WebSettings webSetting = d.webView.getSettings();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
             webSetting.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+        }
         webSetting.setBlockNetworkImage(false);//解决图片不显示
         webSetting.setAllowFileAccess(false);
         webSetting.setJavaScriptEnabled(true);

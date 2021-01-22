@@ -28,7 +28,9 @@ public class AndroidStatusBarTools implements IStatusBarTools {
 
     @Override
     public boolean setStatusBarColor(Activity activity, int bgColor) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return false;
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT){
+            return false;
+        }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -52,9 +54,12 @@ public class AndroidStatusBarTools implements IStatusBarTools {
 
     @Override
     public boolean setStatusBarColor(Activity activity, boolean isWhite) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) return false;
-        if (!isWhite)
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            return false;
+        }
+        if (!isWhite){
             activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        }
         return true;
     }
 

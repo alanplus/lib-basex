@@ -11,6 +11,7 @@ import com.lib.basex.R;
 import com.lib.basex.databinding.LActivityStateBinding;
 import com.lib.basex.dialog.loading.LoadingDialog;
 import com.lib.basex.widget.statelayout.StateModel;
+import com.lib.basex.widget.statelayout.api.IStateView;
 
 /**
  * @author Alan
@@ -36,17 +37,17 @@ public abstract class LStateActivity<T extends LStateViewModel, D extends ViewDa
         t.state.observe(this, stateModel -> {
             switch (stateModel.state) {
                 case LStateViewModel.STATE_LOADING:
-                    binding.stateLayout.showLoadingState(stateModel.text);
+                    getStateView().showLoadingState(stateModel.text);
                     break;
                 case LStateViewModel.STATE_SUCCESS:
-                    binding.stateLayout.showSuccessState();
+                    getStateView().showSuccessState();
                     break;
                 case LStateViewModel.STATE_FAILURE:
                     if (stateModel.failureDrawable != 0) {
-                        binding.stateLayout.setFailureImage(stateModel.failureDrawable);
+                        getStateView().setFailureImage(stateModel.failureDrawable);
                     }
-                    binding.stateLayout.showFailureState(stateModel.code, stateModel.text, stateModel.isRetry);
-                    binding.stateLayout.getRetryView().setOnClickListener(stateModel.onClickListener);
+                    getStateView().showFailureState(stateModel.code, stateModel.text, stateModel.isRetry);
+                    getStateView().getRetryView().setOnClickListener(stateModel.onClickListener);
                     break;
             }
         });
@@ -68,6 +69,10 @@ public abstract class LStateActivity<T extends LStateViewModel, D extends ViewDa
                 }
             }
         });
+    }
+
+    public IStateView getStateView() {
+        return binding.stateLayout;
     }
 
     public void setTitleBar(String title) {

@@ -73,11 +73,15 @@ public class LLoadDialogView extends View {
     }
 
     public void destroy() {
-        if (mAnimator.isRunning()) mAnimator.cancel();
+        if (mAnimator.isRunning()){
+            mAnimator.cancel();
+        }
     }
 
     private void setAnimForErrorOrSuccess() {
-        if (mAnimator.isRunning()) mAnimator.cancel();
+        if (mAnimator.isRunning()){
+            mAnimator.cancel();
+        }
         mAnimator.setRepeatCount(0);
         mAnimator.setDuration(1000);
 

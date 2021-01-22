@@ -874,7 +874,9 @@ public class SmartRefreshLayout extends ViewGroup implements RefreshLayout, Nest
         float sumX = 0, sumY = 0;
         final int count = e.getPointerCount();
         for (int i = 0; i < count; i++) {
-            if (skipIndex == i) continue;
+            if (skipIndex == i) {
+                continue;
+            }
             sumX += e.getX(i);
             sumY += e.getY(i);
         }
@@ -2909,11 +2911,11 @@ public class SmartRefreshLayout extends ViewGroup implements RefreshLayout, Nest
                         mHandler.postDelayed(this, more);
                         //提前设置 状态为 RefreshFinish 防止 postDelayed 导致 finishRefresh 过后，外部判断 state 还是 Refreshing
                         notifyStateChanged(RefreshState.RefreshFinish);
-                        if (noMoreData == Boolean.FALSE) {
+                        if (noMoreData .equals(Boolean.FALSE) ) {
                             setNoMoreData(false);
                         }
                     }
-                    if (noMoreData == Boolean.TRUE) {
+                    if (noMoreData.equals(Boolean.TRUE) ) {
                         setNoMoreData(true);
                     }
                 } else {
@@ -3248,7 +3250,9 @@ public class SmartRefreshLayout extends ViewGroup implements RefreshLayout, Nest
             Runnable runnable = new Runnable() {
                 @Override
                 public void run() {
-                    if (mViceState != RefreshState.Refreshing) return;
+                    if (mViceState != RefreshState.Refreshing) {
+                        return;
+                    }
                     if (reboundAnimator != null) {
                         reboundAnimator.setDuration(0);//cancel会触发End调用，可以判断0来确定是否被cancel
                         reboundAnimator.cancel();//会触发 cancel 和 end 调用
@@ -3355,7 +3359,9 @@ public class SmartRefreshLayout extends ViewGroup implements RefreshLayout, Nest
             Runnable runnable = new Runnable() {
                 @Override
                 public void run() {
-                    if (mViceState != RefreshState.Loading)return;
+                    if (mViceState != RefreshState.Loading){
+                        return;
+                    }
                     if (reboundAnimator != null) {
                         reboundAnimator.setDuration(0);//cancel会触发End调用，可以判断0来确定是否被cancel
                         reboundAnimator.cancel();//会触发 cancel 和 end 调用
@@ -3657,6 +3663,7 @@ public class SmartRefreshLayout extends ViewGroup implements RefreshLayout, Nest
          *                   dispatchTouchEvent , nestScroll 等都为 true
          *                   autoRefresh，autoLoadMore，需要模拟拖动，也为 true
          */
+        @Override
         public RefreshKernel moveSpinner(final int spinner, final boolean isDragging) {
             if (mSpinner == spinner
                     && (mRefreshHeader == null || !mRefreshHeader.isSupportHorizontalDrag())
@@ -3812,6 +3819,7 @@ public class SmartRefreshLayout extends ViewGroup implements RefreshLayout, Nest
             return this;
         }
 
+        @Override
         public ValueAnimator animSpinner(int endSpinner) {
             return SmartRefreshLayout.this.animSpinner(endSpinner, 0, mReboundInterpolator, mReboundDuration);
         }

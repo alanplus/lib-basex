@@ -173,8 +173,10 @@ public class RCHelper {
 
 
     //--- Selector 支持 ----------------------------------------------------------------------------
-
-    public boolean mChecked;              // 是否是 check 状态
+    /**
+     * 是否是 check 状态
+     */
+    public boolean mChecked;
     public OnCheckedChangeListener mOnCheckedChangeListener;
 
     public void drawableStateChanged(View view) {
@@ -182,16 +184,31 @@ public class RCHelper {
             ArrayList<Integer> stateListArray = new ArrayList<>();
             if (view instanceof Checkable) {
                 stateListArray.add(android.R.attr.state_checkable);
-                if (((Checkable) view).isChecked())
+                if (((Checkable) view).isChecked()) {
                     stateListArray.add(android.R.attr.state_checked);
+                }
             }
-            if (view.isEnabled()) stateListArray.add(android.R.attr.state_enabled);
-            if (view.isFocused()) stateListArray.add(android.R.attr.state_focused);
-            if (view.isPressed()) stateListArray.add(android.R.attr.state_pressed);
-            if (view.isHovered()) stateListArray.add(android.R.attr.state_hovered);
-            if (view.isSelected()) stateListArray.add(android.R.attr.state_selected);
-            if (view.isActivated()) stateListArray.add(android.R.attr.state_activated);
-            if (view.hasWindowFocus()) stateListArray.add(android.R.attr.state_window_focused);
+            if (view.isEnabled()) {
+                stateListArray.add(android.R.attr.state_enabled);
+            }
+            if (view.isFocused()) {
+                stateListArray.add(android.R.attr.state_focused);
+            }
+            if (view.isPressed()) {
+                stateListArray.add(android.R.attr.state_pressed);
+            }
+            if (view.isHovered()) {
+                stateListArray.add(android.R.attr.state_hovered);
+            }
+            if (view.isSelected()) {
+                stateListArray.add(android.R.attr.state_selected);
+            }
+            if (view.isActivated()) {
+                stateListArray.add(android.R.attr.state_activated);
+            }
+            if (view.hasWindowFocus()) {
+                stateListArray.add(android.R.attr.state_window_focused);
+            }
 
             if (mStrokeColorStateList != null && mStrokeColorStateList.isStateful()) {
                 int[] stateList = new int[stateListArray.size()];
@@ -205,6 +222,11 @@ public class RCHelper {
     }
 
     public interface OnCheckedChangeListener {
+        /**
+         *
+         * @param view
+         * @param isChecked
+         */
         void onCheckedChanged(View view, boolean isChecked);
     }
 }

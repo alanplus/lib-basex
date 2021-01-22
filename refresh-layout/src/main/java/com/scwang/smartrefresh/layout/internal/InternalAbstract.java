@@ -66,6 +66,7 @@ public abstract class InternalAbstract extends RelativeLayout implements Refresh
         return true;
     }
 
+    @Override
     @NonNull
     public View getView() {
         return mWrappedView == null ? this : mWrappedView;

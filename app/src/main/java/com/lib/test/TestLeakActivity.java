@@ -53,8 +53,10 @@ public class TestLeakActivity extends Activity {
 
     public void testLeak(View view) {
         LThreadService.runDelay(runnable, 3000);
-        if (null != view)
+        if (null != view){
             finish();
+        }
+
     }
 
     @Override

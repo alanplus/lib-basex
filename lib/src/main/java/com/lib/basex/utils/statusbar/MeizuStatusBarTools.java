@@ -27,7 +27,9 @@ public class MeizuStatusBarTools implements IStatusBarTools {
 
     @Override
     public boolean setStatusBarColor(Activity activity, boolean isWhite) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return false;
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT){
+            return false;
+        }
         Window window = activity.getWindow();
         if (window != null) {
             try {

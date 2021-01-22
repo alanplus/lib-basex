@@ -7,7 +7,18 @@ package com.lib.basex.thread;
  */
 public interface IThreadService<T> {
 
+    /**
+     * 在线程中 运行
+     *
+     * @return
+     */
     T runOnThread();
 
+    /**
+     * 在住县城中 运行
+     *
+     * @param t
+     * @param e
+     */
     void runOnMainThread(T t, Throwable e);
 }

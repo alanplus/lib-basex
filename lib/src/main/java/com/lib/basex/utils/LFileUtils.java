@@ -31,17 +31,20 @@ public class LFileUtils {
     }
 
     public static String getFilename(String path) {
-        if (TextUtils.isEmpty(path)) return "";
+        if (TextUtils.isEmpty(path)){
+            return "";
+        }
         int index = path.lastIndexOf("/");
         return path.substring(index + 1);
     }
 
     public static String getFileExt(String path) {
-        if (path == null)
+        if (path == null){
             return null;
+        }
         int index = path.lastIndexOf(".");
         if (index >= 0) {
-            return path.substring(index + 1, path.length()).toLowerCase();
+            return path.substring(index + 1).toLowerCase();
         }
         return null;
     }
@@ -90,9 +93,13 @@ public class LFileUtils {
         File fileDest = new File(dest);
         if (!fileDest.exists()) {
             boolean mkdirs = fileDest.mkdirs();
-            if (!mkdirs) return false;
+            if (!mkdirs) {
+                return false;
+            }
         }
-        if (fileDest.isFile()) return false;
+        if (fileDest.isFile()){
+            return false;
+        }
 
         String filename = getFilename(src);
         String destFilePath = dest.endsWith("/") ? dest + filename : dest + "/" + filename;

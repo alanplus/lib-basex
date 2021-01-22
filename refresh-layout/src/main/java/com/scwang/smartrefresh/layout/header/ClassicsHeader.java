@@ -38,22 +38,47 @@ import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
 /**
  * 经典下拉头部
- * Created by scwang on 2017/5/28.
+ *
+ * @author scwang
+ * @date 2017/5/28
  */
 @SuppressWarnings({"unused", "UnusedReturnValue"})
 public class ClassicsHeader extends InternalClassics<ClassicsHeader> implements RefreshHeader {
 
     public static final int ID_TEXT_UPDATE = R.id.srl_classics_update;
 
-    public static String REFRESH_HEADER_PULLING = null;//"下拉可以刷新";
-    public static String REFRESH_HEADER_REFRESHING = null;//"正在刷新...";
-    public static String REFRESH_HEADER_LOADING = null;//"正在加载...";
-    public static String REFRESH_HEADER_RELEASE = null;//"释放立即刷新";
-    public static String REFRESH_HEADER_FINISH = null;//"刷新完成";
-    public static String REFRESH_HEADER_FAILED = null;//"刷新失败";
-    public static String REFRESH_HEADER_UPDATE = null;//"上次更新 M-d HH:mm";
-    public static String REFRESH_HEADER_SECONDARY = null;//"释放进入二楼";
-//    public static String REFRESH_HEADER_UPDATE = "'Last update' M-d HH:mm";
+    /**
+     *  下拉可以刷新
+     */
+    public static String REFRESH_HEADER_PULLING = null;
+    /**
+     *  正在刷新...
+     */
+    public static String REFRESH_HEADER_REFRESHING = null;
+    /**
+     * 正在加载...
+     */
+    public static String REFRESH_HEADER_LOADING = null;
+    /**
+     * 释放立即刷新
+     */
+    public static String REFRESH_HEADER_RELEASE = null;
+    /**
+     * 刷新完成
+     */
+    public static String REFRESH_HEADER_FINISH = null;
+    /**
+     * 刷新失败
+     */
+    public static String REFRESH_HEADER_FAILED = null;
+    /**
+     * 上次更新 M-d HH:mm
+     */
+    public static String REFRESH_HEADER_UPDATE = null;
+    /**
+     * 释放进入二楼
+     */
+    public static String REFRESH_HEADER_SECONDARY = null;
 
     protected String KEY_LAST_UPDATE_TIME = "LAST_UPDATE_TIME";
 
@@ -63,16 +88,39 @@ public class ClassicsHeader extends InternalClassics<ClassicsHeader> implements 
     protected DateFormat mLastUpdateFormat;
     protected boolean mEnableLastTime = true;
 
-    protected String mTextPulling;//"下拉可以刷新";
-    protected String mTextRefreshing;//"正在刷新...";
-    protected String mTextLoading;//"正在加载...";
-    protected String mTextRelease;//"释放立即刷新";
-    protected String mTextFinish;//"刷新完成";
-    protected String mTextFailed;//"刷新失败";
-    protected String mTextUpdate;//"上次更新 M-d HH:mm";
-    protected String mTextSecondary;//"释放进入二楼";
+    /**
+     * 下拉可以刷新
+     */
+    protected String mTextPulling;
+    /**
+     * 正在刷新...
+     */
+    protected String mTextRefreshing;
+    /**
+     * 正在加载...
+     */
+    protected String mTextLoading;
+    /**
+     * 释放立即刷新
+     */
+    protected String mTextRelease;
+    /**
+     * 刷新完成
+     */
+    protected String mTextFinish;
+    /**
+     * 刷新失败
+     */
+    protected String mTextFailed;
+    /**
+     * 上次更新 M-d HH:mm
+     */
+    protected String mTextUpdate;
+    /**
+     * 释放进入二楼
+     */
+    protected String mTextSecondary;
 
-    //<editor-fold desc="RelativeLayout">
     public ClassicsHeader(Context context) {
         this(context, null);
     }
@@ -235,9 +283,6 @@ public class ClassicsHeader extends InternalClassics<ClassicsHeader> implements 
 
     }
 
-    //</editor-fold>
-
-    //<editor-fold desc="RefreshHeader">
     @Override
     public int onFinish(@NonNull RefreshLayout layout, boolean success) {
         if (success) {
@@ -248,7 +293,8 @@ public class ClassicsHeader extends InternalClassics<ClassicsHeader> implements 
         } else {
             mTitleText.setText(mTextFailed);
         }
-        return super.onFinish(layout, success);//延迟500毫秒之后再弹回
+        //延迟500毫秒之后再弹回
+        return super.onFinish(layout, success);
     }
 
     @Override
@@ -281,6 +327,8 @@ public class ClassicsHeader extends InternalClassics<ClassicsHeader> implements 
                 updateView.setVisibility(mEnableLastTime ? INVISIBLE : GONE);
                 mTitleText.setText(mTextLoading);
                 break;
+            default:
+                break;
         }
     }
     //</editor-fold>
@@ -310,6 +358,7 @@ public class ClassicsHeader extends InternalClassics<ClassicsHeader> implements 
         return this;
     }
 
+    @Override
     public ClassicsHeader setAccentColor(@ColorInt int accentColor) {
         mLastUpdateText.setTextColor(accentColor & 0x00ffffff | 0xcc000000);
         return super.setAccentColor(accentColor);
@@ -333,14 +382,6 @@ public class ClassicsHeader extends InternalClassics<ClassicsHeader> implements 
         return this;
     }
 
-//    public ClassicsHeader setTextSizeTime(int unit, float size) {
-//        mLastUpdateText.setTextSize(unit, size);
-//        if (mRefreshKernel != null) {
-//            mRefreshKernel.requestRemeasureHeightForHeader();
-//        }
-//        return this;
-//    }
-
     public ClassicsHeader setTextTimeMarginTop(float dp) {
         final View updateView = mLastUpdateText;
         MarginLayoutParams lp = (MarginLayoutParams) updateView.getLayoutParams();
@@ -348,21 +389,5 @@ public class ClassicsHeader extends InternalClassics<ClassicsHeader> implements 
         updateView.setLayoutParams(lp);
         return this;
     }
-
-//    public ClassicsHeader setTextTimeMarginTopPx(int px) {
-//        MarginLayoutParams lp = (MarginLayoutParams)mLastUpdateText.getLayoutParams();
-//        lp.topMargin = px;
-//        mLastUpdateText.setLayoutParams(lp);
-//        return this;
-//    }
-
-//    /**
-//     * @deprecated 使用 findViewById(ID_TEXT_UPDATE) 代替
-//     */
-//    @Deprecated
-//    public TextView getLastUpdateText() {
-//        return mLastUpdateText;
-//    }
-    //</editor-fold>
 
 }

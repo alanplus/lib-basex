@@ -39,7 +39,7 @@ public class LBitmapUtils {
             out = new FileOutputStream(path);
             Bitmap.CompressFormat format = Bitmap.CompressFormat.PNG;
             String ext = LFileUtils.getFileExt(path);
-            if (ext != null && ext.equals("jpg")) {
+            if (("jpg").equals(ext)) {
                 format = Bitmap.CompressFormat.JPEG;
             }
             return bitmap.compress(format, 100, out);
@@ -135,7 +135,9 @@ public class LBitmapUtils {
     }
 
     public static void recycle(Bitmap... bitmap) {
-        if (null == bitmap || bitmap.length == 0) return;
+        if (null == bitmap || bitmap.length == 0) {
+            return;
+        }
         for (Bitmap b : bitmap) {
             if (null != b && !b.isRecycled()) {
                 b.recycle();
