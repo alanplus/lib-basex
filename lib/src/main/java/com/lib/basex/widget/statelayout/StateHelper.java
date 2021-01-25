@@ -30,6 +30,8 @@ public class StateHelper implements IStateView {
 
     public StateHelper(@NonNull ViewGroup viewGroup) {
         this.viewGroup = viewGroup;
+        this.viewGroup.setOnClickListener(view -> {
+        });
     }
 
 
@@ -92,7 +94,7 @@ public class StateHelper implements IStateView {
         View failureView = iFailureView == null ? null : iFailureView.getView();
         for (int i = 0; i < childCount; i++) {
             View v = viewGroup.getChildAt(i);
-            if (view == v || failureView == v){
+            if (view == v || failureView == v) {
                 viewGroup.removeView(v);
             }
         }
