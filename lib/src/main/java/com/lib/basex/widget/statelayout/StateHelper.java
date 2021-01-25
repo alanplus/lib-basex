@@ -36,7 +36,7 @@ public class StateHelper implements IStateView {
     @Override
     public void showLoadingState(String text) {
         reset();
-        viewGroup.addView(generateLoadingView(text));
+        addView(generateLoadingView(text));
         ViewGroup.LayoutParams layoutParams = iLoadingView.getView().getLayoutParams();
         layoutParams.width = -1;
         layoutParams.height = -1;
@@ -46,10 +46,18 @@ public class StateHelper implements IStateView {
         iLoadingView.start();
     }
 
+    private void addView(View view) {
+        if (viewGroup instanceof LinearLayout) {
+            viewGroup.addView(view, 0);
+        } else {
+            viewGroup.addView(view);
+        }
+    }
+
     @Override
     public void showFailureState(String text, boolean isRetry) {
         reset();
-        viewGroup.addView(generateFailureView());
+        addView(generateFailureView());
         iFailureView.getView().getLayoutParams().width = -1;
         iFailureView.getView().getLayoutParams().height = -1;
         iFailureView.setText(text);
@@ -80,9 +88,11 @@ public class StateHelper implements IStateView {
 
     public void reset() {
         int childCount = viewGroup.getChildCount();
+        View view = iLoadingView == null ? null : iLoadingView.getView();
+        View failureView = iFailureView == null ? null : iFailureView.getView();
         for (int i = 0; i < childCount; i++) {
             View v = viewGroup.getChildAt(i);
-            if ((null != iLoadingView && iLoadingView.getView() == v) || (null != iFailureView && iFailureView.getView() == v)) {
+            if (view == v || failureView == v){
                 viewGroup.removeView(v);
             }
         }
