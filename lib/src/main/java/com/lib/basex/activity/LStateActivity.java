@@ -52,21 +52,18 @@ public abstract class LStateActivity<T extends LStateViewModel, D extends ViewDa
             }
         });
 
-        t.loadingInfo.observe(this, new Observer<LLoadingDialogInfo>() {
-            @Override
-            public void onChanged(LLoadingDialogInfo lLoadingDialogInfo) {
-                switch (lLoadingDialogInfo.state) {
-                    case 1:
-                        showLoadingDialog(lLoadingDialogInfo);
-                        break;
-                    case 2:
-                    case 3:
-                        dismissSuccessLoadingDialog(lLoadingDialogInfo);
-                        break;
-                    case 4:
-                        dismissImmediately();
-                        break;
-                }
+        t.loadingInfo.observe(this, lLoadingDialogInfo -> {
+            switch (lLoadingDialogInfo.state) {
+                case 1:
+                    showLoadingDialog(lLoadingDialogInfo);
+                    break;
+                case 2:
+                case 3:
+                    dismissSuccessLoadingDialog(lLoadingDialogInfo);
+                    break;
+                case 4:
+                    dismissImmediately();
+                    break;
             }
         });
     }
@@ -90,7 +87,12 @@ public abstract class LStateActivity<T extends LStateViewModel, D extends ViewDa
     protected void dismissSuccessLoadingDialog(LLoadingDialogInfo lLoadingDialogInfo) {
         if (null != loadingDialog && loadingDialog.isShowing()) {
             boolean isSuccess = lLoadingDialogInfo.state == 2;
-            loadingDialog.dismiss(lLoadingDialogInfo.showText, isSuccess, () -> onLoadingDismiss(isSuccess));
+            if (lLoadingDialogInfo.onFinishListener != null) {
+                loadingDialog.dismiss(lLoadingDialogInfo.showText, isSuccess, lLoadingDialogInfo.onFinishListener);
+            } else {
+                loadingDialog.dismiss(lLoadingDialogInfo.showText, isSuccess, () -> onLoadingDismiss(isSuccess));
+            }
+
         }
     }
 

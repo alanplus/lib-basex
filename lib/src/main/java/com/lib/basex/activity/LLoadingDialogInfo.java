@@ -1,5 +1,8 @@
 package com.lib.basex.activity;
 
+
+import com.lib.basex.dialog.loading.LLoadDialogView;
+
 /**
  * @author Alan
  * 时 间：2020/11/18
@@ -13,5 +16,7 @@ public class LLoadingDialogInfo {
     public int state;
 
     public String showText;
+
+    public LLoadDialogView.OnFinishListener onFinishListener;
 
 }

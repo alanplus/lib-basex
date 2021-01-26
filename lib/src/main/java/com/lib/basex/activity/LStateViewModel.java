@@ -8,6 +8,7 @@ import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.lib.basex.dialog.loading.LLoadDialogView;
 import com.lib.basex.widget.statelayout.StateModel;
 
 /**
@@ -51,7 +52,7 @@ public class LStateViewModel extends LViewModel implements LifecycleObserver, Vi
     }
 
     public void showFailureState(String text) {
-        showFailureState(0, text, null,0);
+        showFailureState(0, text, null, 0);
     }
 
     public void showFailureState(String text, View.OnClickListener onClickListener) {
@@ -98,25 +99,26 @@ public class LStateViewModel extends LViewModel implements LifecycleObserver, Vi
     }
 
     protected void dismissSuccessDialog(String text) {
-        dismissDialog(text, true);
+        dismissDialog(text, true, null);
     }
 
     protected void dismissSuccessDialog() {
-        dismissDialog("加载完成", true);
+        dismissDialog("加载完成", true, null);
     }
 
     protected void dismissFailureDialog(String text) {
-        dismissDialog(text, false);
+        dismissDialog(text, false, null);
     }
 
     protected void dismissFailureDialog() {
-        dismissDialog("加载失败", false);
+        dismissDialog("加载失败", false, null);
     }
 
-    protected void dismissDialog(String text, boolean isSuccess) {
+    protected void dismissDialog(String text, boolean isSuccess, LLoadDialogView.OnFinishListener onFinishListener) {
         LLoadingDialogInfo lLoadingDialogInfo = new LLoadingDialogInfo();
         lLoadingDialogInfo.state = isSuccess ? 2 : 3;
         lLoadingDialogInfo.showText = text;
+        lLoadingDialogInfo.onFinishListener = onFinishListener;
         loadingInfo.setValue(lLoadingDialogInfo);
     }
 
