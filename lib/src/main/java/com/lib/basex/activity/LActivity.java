@@ -169,7 +169,10 @@ public abstract class LActivity<T extends LViewModel, D extends ViewDataBinding>
         return false;
     }
 
-    public void startVmActivity(Intent intent) {
-        startActivity(intent);
+    public void startVmActivity(LJumpActivityInfo jumpActivityInfo) {
+        if(null!=jumpActivityInfo&&null!=jumpActivityInfo.intent&&null!=jumpActivityInfo.aClass){
+            jumpActivityInfo.intent.setClass(this,jumpActivityInfo.aClass);
+            startActivity(jumpActivityInfo.intent);
+        }
     }
 }

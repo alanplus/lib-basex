@@ -1,5 +1,6 @@
 package com.lib.basex.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.text.TextUtils;
 
@@ -19,7 +20,7 @@ import com.lib.basex.utils.LUtils;
 public class LViewModel extends ViewModel implements LifecycleObserver {
 
     public MutableLiveData<Boolean> isFinish = new MutableLiveData<>();
-    public MutableLiveData<Intent> start = new MutableLiveData<>();
+    public MutableLiveData<LJumpActivityInfo> start = new MutableLiveData<>();
 
     public boolean isNetworkAvailable() {
         return LUtils.isNetworkAvailable(LApplication.app);
@@ -39,7 +40,10 @@ public class LViewModel extends ViewModel implements LifecycleObserver {
         isFinish.setValue(true);
     }
 
-    public void startActivity(Intent intent) {
-        start.setValue(intent);
+    public void startActivity(Intent intent, Class<? extends Activity> clazz) {
+        LJumpActivityInfo jumpActivityInfo = new LJumpActivityInfo();
+        jumpActivityInfo.aClass = clazz;
+        jumpActivityInfo.intent = intent;
+        start.setValue(jumpActivityInfo);
     }
 }
