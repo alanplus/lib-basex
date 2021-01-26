@@ -53,7 +53,7 @@ public abstract class LHomeActivity extends LActivity<LViewModel, LActivityHomeB
     }
 
     @Override
-    protected ViewModel createViewModel() {
+    protected LViewModel createViewModel() {
         return createViewModel(LViewModel.class);
     }
 
