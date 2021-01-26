@@ -1,12 +1,14 @@
 package com.lib.basex.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -37,6 +39,7 @@ public abstract class LActivity<T extends LViewModel, D extends ViewDataBinding>
     protected static IActivity iActivity;
 
     public static List<Activity> activityList = new ArrayList<>();
+    public boolean isTop;
 
     public static void register(IActivity iActivity) {
         LActivity.iActivity = iActivity;
@@ -62,6 +65,7 @@ public abstract class LActivity<T extends LViewModel, D extends ViewDataBinding>
 
         initStatusBar();
         t = (T) createViewModel();
+        t.start.observe(this, this::startVmActivity);
 
         t.isFinish.observe(this, aBoolean -> {
             if (aBoolean) {
@@ -80,11 +84,11 @@ public abstract class LActivity<T extends LViewModel, D extends ViewDataBinding>
         d = DataBindingUtil.setContentView(this, getContentId());
     }
 
-    protected ViewModel createViewModel() {
-        return createViewModel(LClassUtils.getTClassObject(this));
+    protected T createViewModel() {
+        return (T) createViewModel(LClassUtils.getTClassObject(this));
     }
 
-    protected ViewModel createViewModel(Class<? extends LViewModel> clazz) {
+    protected T createViewModel(Class<T> clazz) {
         return new ViewModelProvider(this).get(clazz);
     }
 
@@ -122,6 +126,7 @@ public abstract class LActivity<T extends LViewModel, D extends ViewDataBinding>
     @Override
     protected void onResume() {
         super.onResume();
+        isTop = true;
         IActivity iActivity = getIActivity();
         if (null != iActivity) {
             iActivity.onResume(this);
@@ -140,6 +145,7 @@ public abstract class LActivity<T extends LViewModel, D extends ViewDataBinding>
     @Override
     protected void onStop() {
         super.onStop();
+        isTop = false;
         IActivity iActivity = getIActivity();
         if (null != iActivity) {
             iActivity.onStop(this);
@@ -161,5 +167,9 @@ public abstract class LActivity<T extends LViewModel, D extends ViewDataBinding>
 
     protected boolean configEvenBus() {
         return false;
+    }
+
+    public void startVmActivity(Intent intent) {
+        startActivity(intent);
     }
 }

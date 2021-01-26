@@ -1,5 +1,6 @@
 package com.lib.basex.activity;
 
+import android.content.Intent;
 import android.text.TextUtils;
 
 import androidx.lifecycle.LifecycleObserver;
@@ -18,6 +19,7 @@ import com.lib.basex.utils.LUtils;
 public class LViewModel extends ViewModel implements LifecycleObserver {
 
     public MutableLiveData<Boolean> isFinish = new MutableLiveData<>();
+    public MutableLiveData<Intent> start = new MutableLiveData<>();
 
     public boolean isNetworkAvailable() {
         return LUtils.isNetworkAvailable(LApplication.app);

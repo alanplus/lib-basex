@@ -29,12 +29,14 @@ public class LClassUtils {
     private static final String CLASS_FILE_PREFIX = File.separator + "classes" + File.separator;
     private static final String PACKAGE_SEPARATOR = ".";
 
-    public static Class getTClassObject(@NonNull Object obj) {
+    public static <T> Class<T> getTClassObject(@NonNull Object obj) {
         try {
             Class<?> aClass = obj.getClass();
             Type genericSuperclass = aClass.getGenericSuperclass();
             Type[] types = ((ParameterizedType) genericSuperclass).getActualTypeArguments();
-            return (Class) types[0];
+            if(types[0] instanceof Class){
+                return (Class<T>) types[0];
+            }
         } catch (Exception e) {
             Logger.error(e);
 
