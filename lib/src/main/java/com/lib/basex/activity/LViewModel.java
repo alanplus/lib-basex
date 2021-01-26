@@ -38,4 +38,8 @@ public class LViewModel extends ViewModel implements LifecycleObserver {
     public void finish() {
         isFinish.setValue(true);
     }
+
+    public void startActivity(Intent intent) {
+        start.setValue(intent);
+    }
 }
