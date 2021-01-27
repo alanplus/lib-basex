@@ -1,7 +1,13 @@
 package com.lib.basex.glide.request;
 
 
+import android.graphics.drawable.Drawable;
+
+import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
+
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.Target;
 
 /**
  * @author Alan
@@ -59,4 +65,66 @@ public interface IGlideConfig<T> {
      * @return 返回当前对象
      */
     T setRadius(int radius);
+
+    /**
+     * 设置 边框 宽度
+     *
+     * @param width 宽度
+     * @return 返回当前对象
+     */
+    T setStrokeWidth(int width);
+
+    /**
+     * 设置 边框 颜色
+     *
+     * @param color 颜色
+     * @return 返回当前对象
+     */
+    T setStrokeColor(@ColorInt int color);
+
+    /**
+     * 设置 资源图片
+     *
+     * @param res 图片ID
+     * @return 返回当前对象
+     */
+    T setDrawableId(@DrawableRes int res);
+
+    /**
+     * 设置是否使用缓存
+     *
+     * @param useCache 是否使用缓存
+     * @return 返回当前对象
+     */
+    T setUseCache(int useCache);
+
+    /**
+     * 禁用内存缓存功能
+     *
+     * @param useCache true 禁用 false 使用
+     * @return 返回当前对象
+     */
+    T skipMemoryCache(boolean useCache);
+
+    /**
+     * 加载
+     */
+    void load();
+
+    /**
+     * 加载 到 target
+     *
+     * @param target 参数
+     */
+    void load(Target<Drawable> target);
+
+    /**
+     * 设置 Glide 参数
+     *
+     * @param requestOption Glide 参数
+     * @return 返回当前对象
+     */
+    T setRequestOption(RequestOptions requestOption);
+
+
 }

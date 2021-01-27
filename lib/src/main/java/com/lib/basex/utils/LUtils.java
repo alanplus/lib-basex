@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
@@ -29,6 +30,11 @@ import androidx.annotation.IdRes;
 import androidx.annotation.LayoutRes;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.Target;
+import com.lib.basex.LApplication;
 
 import java.io.File;
 import java.io.IOException;
@@ -93,6 +99,9 @@ public class LUtils {
         try {
             appInfo = context.getPackageManager().getApplicationInfo(context.getPackageName(),
                     PackageManager.GET_META_DATA);
+            if (appInfo.metaData == null) {
+                return null;
+            }
             return appInfo.metaData.getString(key);
         } catch (PackageManager.NameNotFoundException e) {
             Logger.error(e);
@@ -305,6 +314,5 @@ public class LUtils {
         }
         return t;
     }
-
 
 }

@@ -32,6 +32,10 @@
         <activity
             android:name="com.lib.basex.activity.LWebViewActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".TestGlideViewActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 

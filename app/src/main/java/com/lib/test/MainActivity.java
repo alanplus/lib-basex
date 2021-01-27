@@ -20,6 +20,7 @@ import com.lib.basex.activity.LViewModel;
 import com.lib.basex.activity.LWebViewActivity;
 import com.lib.basex.annotation.Activity;
 import com.lib.basex.dialog.LightLoadingDialog;
+import com.lib.basex.utils.LActivityUtils;
 import com.lib.test.databinding.ActivityMainBinding;
 
 @Activity("aaa")
@@ -44,8 +45,9 @@ public class MainActivity extends LActivity<AViewModel, ActivityMainBinding> {
         d.showLightDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LightLoadingDialog lightLoadingDialog = new LightLoadingDialog(getActivity());
-                lightLoadingDialog.show();
+                LActivityUtils.startActivity(getActivity(), TestGlideViewActivity.class);
+//                LightLoadingDialog lightLoadingDialog = new LightLoadingDialog(getActivity());
+//                lightLoadingDialog.show();
             }
         });
 

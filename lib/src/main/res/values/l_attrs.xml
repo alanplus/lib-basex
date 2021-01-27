@@ -50,4 +50,27 @@
         <attr name="l_ri_radius" format="dimension" />
         <attr name="l_ri_indicator_height" format="dimension" />
     </declare-styleable>
+
+    <declare-styleable name="GlideView">
+        <attr name="l_glide_circle" format="boolean" />
+        <attr name="l_glide_radius" format="dimension" />
+        <attr name="l_glide_corner_left" format="dimension" />
+        <attr name="l_glide_corner_top" format="dimension" />
+        <attr name="l_glide_corner_right" format="dimension" />
+        <attr name="l_glide_corner_bottom" format="dimension" />
+        <attr name="l_glide_stroke_width" format="dimension" />
+        <attr name="l_glide_stroke_color" format="color|reference" />
+        <attr name="l_glide_place_holder" format="reference" />
+        <attr name="l_glide_error_res" format="reference" />
+        <attr name="l_glide_src" format="reference" />
+        <attr name="l_glide_skip_memory" format="boolean" />
+        <!-- 默认true -->
+        <attr name="l_glide_use_cache" format="enum">
+            <enum name="ALL" value="0" />
+            <enum name="NONE" value="1" />
+            <enum name="DATA" value="2" />
+            <enum name="RESOURCE" value="3" />
+            <enum name="AUTOMATIC" value="4" />
+        </attr>
+    </declare-styleable>
 </resources>

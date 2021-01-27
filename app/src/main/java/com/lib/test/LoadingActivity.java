@@ -27,7 +27,7 @@ public class LoadingActivity extends LHomeActivity {
     }
 
     @Override
-    protected ViewModel createViewModel() {
+    protected LViewModel createViewModel() {
         return new ViewModelProvider(this).get(LViewModel.class);
     }
 }

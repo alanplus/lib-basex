@@ -1,5 +1,6 @@
 package com.lib.test;
 
+import com.bumptech.glide.Glide;
 import com.lib.basex.LApplication;
 
 /**
@@ -10,6 +11,12 @@ import com.lib.basex.LApplication;
 public class App extends LApplication {
     @Override
     public void init() {
+        Glide.get(this).clearMemory();
+        Glide.get(this).clearDiskCache();
+    }
 
+    @Override
+    public boolean isDebug() {
+        return true;
     }
 }
