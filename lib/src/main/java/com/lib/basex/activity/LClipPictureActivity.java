@@ -4,8 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Rect;
 
-import androidx.exifinterface.media.ExifInterface;
 
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Build;
 import android.text.TextUtils;
