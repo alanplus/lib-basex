@@ -5,8 +5,10 @@ import android.text.TextUtils;
 
 import com.lib.basex.http.ApiResult;
 
+import java.io.IOException;
 import java.io.InputStream;
 
+import okhttp3.MultipartBody;
 import okhttp3.Request;
 import okhttp3.Response;
 
@@ -43,5 +45,15 @@ public class BitmapRequest extends LRequest {
             }
         }
         return apiResult;
+    }
+
+    @Override
+    protected Request create() throws IOException {
+        if (null != builder) {
+            builder.setType(MultipartBody.FORM);
+            MultipartBody build = builder.build();
+            return new Request.Builder().url(getUrl()).post(build).build();
+        }
+        return super.create();
     }
 }

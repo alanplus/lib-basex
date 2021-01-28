@@ -19,6 +19,7 @@ import java.util.Set;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -47,6 +48,8 @@ public abstract class LRequest {
     protected OnHttpCallBack onHttpCallBack;
 
     protected String downloadDir, downloadName;
+
+    protected MultipartBody.Builder builder;
 
 
     public LRequest(String path) {
@@ -86,6 +89,18 @@ public abstract class LRequest {
         Request.Builder builder = new Request.Builder().tag(tag);
         addHeaders(builder);
         return create(url, builder, getContentFromMap(mParams));
+    }
+
+    /**
+     * 上传图片
+     * builder.addFormDataPart("file", file.getName(), RequestBody.create(MediaType.parse("image/png"), file));
+     *
+     * @param builder
+     * @return
+     */
+    public LRequest setMultipartBodyBuilder(MultipartBody.Builder builder) {
+        this.builder = builder;
+        return this;
     }
 
 
@@ -205,12 +220,6 @@ public abstract class LRequest {
             Logger.error(e);
         }
         return new ApiResult(-122);
-    }
-
-
-    public Response response() throws Exception {
-        Request request = create();
-        return okHttpClient.newCall(request).execute();
     }
 
 
