@@ -91,8 +91,8 @@ public abstract class LActivity<T extends LViewModel, D extends ViewDataBinding>
     }
 
     protected T createViewModel(@Nullable Class<T> clazz) {
-        boolean isAssignable = clazz != null && clazz.isAssignableFrom(LViewModel.class);
-        if (isAssignable || clazz == LViewModel.class) {
+        boolean isAssignable = clazz != null && (clazz.isAssignableFrom(LViewModel.class) || clazz.isAssignableFrom(LStateViewModel.class) || LClassUtils.isSub(clazz, LViewModel.class));
+        if (isAssignable) {
             return new ViewModelProvider(this).get(clazz);
         } else {
             return null;

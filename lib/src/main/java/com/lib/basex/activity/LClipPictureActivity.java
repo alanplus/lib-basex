@@ -25,6 +25,7 @@ import java.io.IOException;
 
 /**
  * 用户裁剪头像
+ * 返回数据  pic_name图片名称
  *
  * @author huangxiaotao
  */

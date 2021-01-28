@@ -94,27 +94,27 @@ public class LStateViewModel extends LViewModel implements LifecycleObserver, Vi
         loadingInfo.setValue(lLoadingDialogInfo);
     }
 
-    protected void showLoadingDialog() {
+    public void showLoadingDialog() {
         showLoadingDialog("正在加载");
     }
 
-    protected void dismissSuccessDialog(String text) {
+    public void dismissSuccessDialog(String text) {
         dismissDialog(text, true, null);
     }
 
-    protected void dismissSuccessDialog() {
+    public void dismissSuccessDialog() {
         dismissDialog("加载完成", true, null);
     }
 
-    protected void dismissFailureDialog(String text) {
+    public void dismissFailureDialog(String text) {
         dismissDialog(text, false, null);
     }
 
-    protected void dismissFailureDialog() {
+    public void dismissFailureDialog() {
         dismissDialog("加载失败", false, null);
     }
 
-    protected void dismissDialog(String text, boolean isSuccess, LLoadDialogView.OnFinishListener onFinishListener) {
+    public void dismissDialog(String text, boolean isSuccess, LLoadDialogView.OnFinishListener onFinishListener) {
         LLoadingDialogInfo lLoadingDialogInfo = new LLoadingDialogInfo();
         lLoadingDialogInfo.state = isSuccess ? 2 : 3;
         lLoadingDialogInfo.showText = text;
@@ -123,7 +123,7 @@ public class LStateViewModel extends LViewModel implements LifecycleObserver, Vi
     }
 
 
-    protected void dismissImmediately() {
+    public void dismissImmediately() {
         LLoadingDialogInfo lLoadingDialogInfo = new LLoadingDialogInfo();
         lLoadingDialogInfo.state = 4;
         loadingInfo.setValue(lLoadingDialogInfo);

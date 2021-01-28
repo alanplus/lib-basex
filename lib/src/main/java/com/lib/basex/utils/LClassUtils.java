@@ -34,7 +34,7 @@ public class LClassUtils {
             Class<?> aClass = obj.getClass();
             Type genericSuperclass = aClass.getGenericSuperclass();
             Type[] types = ((ParameterizedType) genericSuperclass).getActualTypeArguments();
-            if(types[0] instanceof Class){
+            if (types[0] instanceof Class) {
                 return (Class<T>) types[0];
             }
         } catch (Exception e) {
@@ -192,17 +192,33 @@ public class LClassUtils {
         return classes;
     }
 
+
     public static List<Class<?>> getSubClass(Class<?> clazz) {
         List<Class<?>> list = new ArrayList<>();
 
         return list;
     }
 
-//        for (Class < ? > c : getClasses(cls)) {
-//            if (cls.isAssignableFrom(c) && !cls.equals(c)) {
-//                classes.add(c);
-//            }
-//
-//        }
-
+    /**
+     * 判断 c 是 s的子类
+     *
+     * @param c 需要判断的
+     * @param s 父类
+     * @return 返回值
+     */
+    public static boolean isSub(@NonNull Class c, @NonNull Class s) {
+        Type type = c.getGenericSuperclass();
+        if (type instanceof Class) {
+            Class tem = ((Class) type);
+            if (tem.getName().equals(s.getName())) {
+                return true;
+            }
+            if (tem.getName().equals(Object.class.getName())) {
+                return false;
+            }
+            return isSub(tem, s);
+        }
+        return false;
     }
+
+}
