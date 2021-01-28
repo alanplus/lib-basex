@@ -1,10 +1,14 @@
 package com.lib.basex.utils;
 
+import android.app.Activity;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+
+import com.lib.basex.LApplication;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -144,6 +148,90 @@ public class LBitmapUtils {
                 b = null;
             }
         }
+    }
+
+    /**
+     * 从路径中 加载Bitmap
+     *
+     * @param pathName 路径
+     * @return 返回bitmap
+     */
+    public static Bitmap getBitmapFromPath(String pathName) {
+        try {
+            int[] screenSize = LUtils.getScreenSize(LApplication.app);
+            int screenWidth = screenSize[0];
+            int screenHeight = screenSize[1];
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inJustDecodeBounds = true;
+            Bitmap bitmap;
+            if (options.outWidth > screenWidth
+                    && options.outHeight > screenHeight) {
+                options.inSampleSize = computeSampleSize(options, -1,
+                        screenWidth * screenHeight);
+            }
+            options.inJustDecodeBounds = false;
+            bitmap = BitmapFactory.decodeFile(pathName, options);
+            return bitmap;
+        } catch (Throwable t) {
+            t.printStackTrace();
+            Logger.error(t);
+            return null;
+        }
+    }
+
+    public static int computeSampleSize(BitmapFactory.Options options,
+                                        int minSideLength, int maxNumOfPixels) {
+        int initialSize = computeInitialSampleSize(options, minSideLength,
+                maxNumOfPixels);
+        int roundedSize;
+        if (initialSize <= 8) {
+            roundedSize = 1;
+            while (roundedSize < initialSize) {
+                roundedSize <<= 1;
+            }
+        } else {
+            roundedSize = (initialSize + 7) / 8 * 8;
+        }
+
+        return roundedSize;
+    }
+
+    private static int computeInitialSampleSize(BitmapFactory.Options options, int minSideLength, int maxNumOfPixels) {
+        double w = options.outWidth;
+        double h = options.outHeight;
+        int lowerBound = (maxNumOfPixels == -1) ? 1 : (int) Math.ceil(Math.sqrt(w * h / maxNumOfPixels));
+        int upperBound = (minSideLength == -1) ? 128 : (int) Math.min(Math.floor(w / minSideLength), Math.floor(h / minSideLength));
+        if (upperBound < lowerBound) {
+            return lowerBound;
+        }
+        if ((maxNumOfPixels == -1) && (minSideLength == -1)) {
+            return 1;
+        } else if (minSideLength == -1) {
+            return lowerBound;
+        } else {
+            return upperBound;
+        }
+    }
+
+    // 计算图片的缩放�??
+    public static int calculateInSampleSize(BitmapFactory.Options options,
+                                            int reqWidth, int reqHeight) {
+        boolean isOptionWidthLarger = options.outWidth > options.outHeight;
+        boolean isReqWidthLarger = reqWidth > reqHeight;
+        final int height = isOptionWidthLarger ? options.outHeight
+                : options.outWidth;
+        final int width = isOptionWidthLarger ? options.outWidth
+                : options.outHeight;
+        int reqW = isReqWidthLarger ? reqWidth : reqHeight;
+        int reqH = isReqWidthLarger ? reqHeight : reqWidth;
+        int inSampleSize = 1;
+
+        if (height > reqH || width > reqW) {
+            final int heightRatio = Math.round((float) height / (float) reqH);
+            final int widthRatio = Math.round((float) width / (float) reqW);
+            inSampleSize = Math.min(heightRatio, widthRatio);
+        }
+        return inSampleSize;
     }
 
 }

@@ -18,8 +18,11 @@ public class LRefreshLayout extends SwipeRefreshLayout {
 
     private float startY;
     private float startX;
-    // 记录viewPager是否拖拽的标记
+    /**
+     * 记录viewPager是否拖拽的标记
+     */
     private boolean mIsVpDragger;
+
     private int mTouchSlop;
 
     public LRefreshLayout(@NonNull Context context) {

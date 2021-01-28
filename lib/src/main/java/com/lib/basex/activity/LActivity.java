@@ -64,19 +64,21 @@ public abstract class LActivity<T extends LViewModel, D extends ViewDataBinding>
 
 
         initStatusBar();
-        t = (T) createViewModel();
-        t.start.observe(this, this::startVmActivity);
+        t = createViewModel();
+        if (null != t) {
+            t.start.observe(this, this::startVmActivity);
 
-        t.isFinish.observe(this, aBoolean -> {
-            if (aBoolean) {
-                finish();
-            }
-        });
+            t.isFinish.observe(this, aBoolean -> {
+                if (aBoolean) {
+                    finish();
+                }
+            });
 
-        //所有布局中dababinding对象变量名称都是vm
-        d.setVariable(BR.vm, t);
+            //所有布局中DataBinding对象变量名称都是vm
+            d.setVariable(BR.vm, t);
+            getLifecycle().addObserver(t);
+        }
         d.executePendingBindings();//立即更新UI
-        getLifecycle().addObserver(t);
         initView();
     }
 
@@ -85,11 +87,16 @@ public abstract class LActivity<T extends LViewModel, D extends ViewDataBinding>
     }
 
     protected T createViewModel() {
-        return (T) createViewModel(LClassUtils.getTClassObject(this));
+        return createViewModel(LClassUtils.getTClassObject(this));
     }
 
-    protected T createViewModel(Class<T> clazz) {
-        return new ViewModelProvider(this).get(clazz);
+    protected T createViewModel(@Nullable Class<T> clazz) {
+        boolean isAssignable = clazz != null && clazz.isAssignableFrom(LViewModel.class);
+        if (isAssignable || clazz == LViewModel.class) {
+            return new ViewModelProvider(this).get(clazz);
+        } else {
+            return null;
+        }
     }
 
     protected void initStatusBar() {
@@ -170,8 +177,8 @@ public abstract class LActivity<T extends LViewModel, D extends ViewDataBinding>
     }
 
     public void startVmActivity(LJumpActivityInfo jumpActivityInfo) {
-        if(null!=jumpActivityInfo&&null!=jumpActivityInfo.intent&&null!=jumpActivityInfo.aClass){
-            jumpActivityInfo.intent.setClass(this,jumpActivityInfo.aClass);
+        if (null != jumpActivityInfo && null != jumpActivityInfo.intent && null != jumpActivityInfo.aClass) {
+            jumpActivityInfo.intent.setClass(this, jumpActivityInfo.aClass);
             startActivity(jumpActivityInfo.intent);
         }
     }

@@ -71,6 +71,7 @@ dependencies {
     api lib.okhttp
     api lib.gson
     api lib.eventbus
+    api lib.rxpermissions
 
 //    api("com.google.guava:guava:30.1-android")
 

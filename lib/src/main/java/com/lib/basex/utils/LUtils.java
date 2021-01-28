@@ -1,7 +1,10 @@
 package com.lib.basex.utils;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -28,6 +31,9 @@ import android.view.WindowManager;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 
@@ -35,6 +41,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.Target;
 import com.lib.basex.LApplication;
+import com.lib.basex.activity.LActivity;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import java.io.File;
 import java.io.IOException;
@@ -43,8 +51,12 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.UUID;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
+
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 
 /**
  * Created by Mouse on 2018/10/15.
@@ -315,4 +327,30 @@ public class LUtils {
         return t;
     }
 
+    public static void startAndroidImage(@NonNull AppCompatActivity activity, int requestCode) {
+        RxPermissions permissions = new RxPermissions(activity);
+        boolean granted = permissions.isGranted(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (!granted) {
+            Disposable disposable = permissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE).subscribe(aBoolean -> {
+                if (!aBoolean) {
+                    LToastManager.getInstance().showToast(activity, "没有访问权限");
+                } else {
+                    startAndroidImageActivity(activity, requestCode);
+                }
+            });
+        } else {
+            startAndroidImageActivity(activity, requestCode);
+        }
+    }
+
+    public static void startAndroidImageActivity(AppCompatActivity activity, int requestCode) {
+        Intent getImage = new Intent(Intent.ACTION_GET_CONTENT);
+        getImage.addCategory(Intent.CATEGORY_OPENABLE);
+        getImage.setType("image/*");
+        activity.startActivityForResult(getImage, requestCode);
+    }
+
+    public static String getRandomId() {
+        return UUID.randomUUID().toString().replace("-", "");
+    }
 }

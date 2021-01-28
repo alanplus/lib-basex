@@ -1,2 +1,4 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.lib.basex" />
+<manifest package="com.lib.basex">
+
+
+</manifest>
