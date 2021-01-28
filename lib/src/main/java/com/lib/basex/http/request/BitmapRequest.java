@@ -34,7 +34,10 @@ public class BitmapRequest extends LRequest {
 
 
     @Override
-    protected ApiResult handlerResponse(Response response, OnHttpCallBack onHttpCallBack) {
+    protected ApiResult handlerResponse(Response response, OnHttpCallBack onHttpCallBack) throws IOException {
+        if (null != builder) {
+            return super.handlerResponse(response, onHttpCallBack);
+        }
         ApiResult apiResult = new ApiResult(-122);
         apiResult.httpCode = response.code();
         if (response.isSuccessful()) {
