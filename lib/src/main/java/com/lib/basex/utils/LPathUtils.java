@@ -38,7 +38,7 @@ public class LPathUtils {
     }
 
     public static String getTempDir() {
-        String s = getDir() + File.pathSeparator + "temp";
+        String s = getDir() + File.separator + "temp";
         File file = new File(s);
         if (!file.exists()) {
             boolean mkdirs = file.mkdirs();
