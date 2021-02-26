@@ -1,19 +1,24 @@
 package com.lib.basex.widget;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
+
+import com.lib.basex.R;
 
 /**
  * @author Alan
  * 时 间：2021/2/25
  * 简 述：<功能简述>
  */
-public class WithBorderTextView extends androidx.appcompat.widget.AppCompatTextView {
+public class LWithBorderTextView extends androidx.appcompat.widget.AppCompatTextView {
 
     public static final int LINE_LEFT = 8;
     public static final int LINE_TOP = 4;
@@ -23,18 +28,32 @@ public class WithBorderTextView extends androidx.appcompat.widget.AppCompatTextV
     private LineProperty line;
     private Paint paint;
 
-    public WithBorderTextView(Context context) {
+    public LWithBorderTextView(Context context) {
         this(context, null);
     }
 
-    public WithBorderTextView(Context context, @Nullable AttributeSet attrs) {
+    public LWithBorderTextView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        init();
+        init(attrs);
     }
 
-    private void init() {
+    private void init(AttributeSet attrs) {
         paint = new Paint();
         paint.setAntiAlias(true);
+        if (null != attrs) {
+            TypedArray array = getContext().obtainStyledAttributes(attrs, R.styleable.LWithBorderTextView);
+            int color = array.getColor(R.styleable.LWithBorderTextView_l_border_color, Color.BLACK);
+            int size = array.getDimensionPixelSize(R.styleable.LWithBorderTextView_l_border_width, 0);
+            int direct = array.getInt(R.styleable.LWithBorderTextView_l_border_direct, LINE_BOTTOM);
+
+            line = new LineProperty();
+            line.color = color;
+            line.width = size;
+            line.direct = direct;
+            setLine(line);
+            array.recycle();
+        }
+
     }
 
     @Override
@@ -69,8 +88,9 @@ public class WithBorderTextView extends androidx.appcompat.widget.AppCompatTextV
     }
 
     public static class LineProperty {
-        public int width;
-        public int color;
+        public int width = 1;
+        @ColorInt
+        public int color = Color.BLACK;
         // 0
         public int direct;
     }

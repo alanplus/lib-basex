@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import com.lib.basex.R;
 import com.lib.basex.databinding.LTextListDialogBinding;
 import com.lib.basex.utils.LUtils;
-import com.lib.basex.widget.WithBorderTextView;
+import com.lib.basex.widget.LWithBorderTextView;
 import com.lib.basex.widget.recycleview.IBaseRecycleView;
 import com.lib.basex.widget.recycleview.LRecycleViewProxy;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -55,15 +55,15 @@ public class LTextListDialog extends LDialog<LTextListDialogBinding> implements 
 
     @Override
     public View getView(Context context, int type) {
-        WithBorderTextView textView = new WithBorderTextView(getContext());
+        LWithBorderTextView textView = new LWithBorderTextView(getContext());
         textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 17);
         textView.setTextColor(Color.parseColor("#535353"));
         textView.setGravity(Gravity.CENTER);
         int padding = LUtils.dip2px(15);
-        WithBorderTextView.LineProperty property = new WithBorderTextView.LineProperty();
+        LWithBorderTextView.LineProperty property = new LWithBorderTextView.LineProperty();
         property.color = Color.parseColor("#dddddd");
         property.width = LUtils.dip2px(1);
-        property.direct = WithBorderTextView.LINE_BOTTOM;
+        property.direct = LWithBorderTextView.LINE_BOTTOM;
         textView.setLine(property);
         textView.setSingleLine();
         textView.setPadding(padding, padding, padding, padding);
