@@ -11,8 +11,8 @@ import com.lib.basex.LApplication;
 public class App extends LApplication {
     @Override
     public void init() {
-        Glide.get(this).clearMemory();
-        Glide.get(this).clearDiskCache();
+//        Glide.get(this).clearMemory();
+//        Glide.get(this).clearDiskCache();
     }
 
     @Override

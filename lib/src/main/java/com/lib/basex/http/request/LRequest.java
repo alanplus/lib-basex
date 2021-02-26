@@ -260,11 +260,11 @@ public abstract class LRequest {
 
 
     protected ApiResult handlerResponse(Response response, OnHttpCallBack onHttpCallBack) throws IOException {
-        ApiResult apiResult = new ApiResult(-122);
+        ApiResult apiResult = new ApiResult(response.code());
         apiResult.httpCode = response.code();
         if (response.isSuccessful()) {
             String s = response.body() == null ? "" : response.body().string();
-            apiResult.code = -121;
+            apiResult.code = response.code();
             apiResult.originText = s;
             return null == iParseStrategy ? apiResult : iParseStrategy.parse(s);
         }

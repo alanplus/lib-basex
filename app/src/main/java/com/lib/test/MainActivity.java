@@ -19,8 +19,10 @@ import com.lib.basex.activity.LActivity;
 import com.lib.basex.activity.LViewModel;
 import com.lib.basex.activity.LWebViewActivity;
 import com.lib.basex.annotation.Activity;
+import com.lib.basex.dialog.LTextListDialog;
 import com.lib.basex.dialog.LightLoadingDialog;
 import com.lib.basex.utils.LActivityUtils;
+import com.lib.basex.utils.LToastManager;
 import com.lib.test.databinding.ActivityMainBinding;
 
 @Activity("aaa")
@@ -45,7 +47,16 @@ public class MainActivity extends LActivity<AViewModel, ActivityMainBinding> {
         d.showLightDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LActivityUtils.startActivity(getActivity(), TestGlideViewActivity.class);
+                LTextListDialog textListDialog = new LTextListDialog(getActivity());
+                textListDialog.setData(new String[]{"全部", "项目1", "项目1", "项目1"});
+                textListDialog.setOnItemClickListener(new LTextListDialog.OnItemClickListener() {
+                    @Override
+                    public void onItemClickListener(int position, String s, View view) {
+                        LToastManager.getInstance().showToast(getActivity(), "position:" + position);
+                    }
+                });
+                textListDialog.show();
+//                LActivityUtils.startActivity(getActivity(), TestGlideViewActivity.class);
 //                LightLoadingDialog lightLoadingDialog = new LightLoadingDialog(getActivity());
 //                lightLoadingDialog.show();
             }
