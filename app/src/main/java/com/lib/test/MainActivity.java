@@ -23,7 +23,11 @@ import com.lib.basex.dialog.LTextListDialog;
 import com.lib.basex.dialog.LightLoadingDialog;
 import com.lib.basex.utils.LActivityUtils;
 import com.lib.basex.utils.LToastManager;
+import com.lib.basex.widget.popup.LListPopupWindow;
 import com.lib.test.databinding.ActivityMainBinding;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Activity("aaa")
 public class MainActivity extends LActivity<AViewModel, ActivityMainBinding> {
@@ -47,15 +51,16 @@ public class MainActivity extends LActivity<AViewModel, ActivityMainBinding> {
         d.showLightDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LTextListDialog textListDialog = new LTextListDialog(getActivity());
-                textListDialog.setData(new String[]{"全部", "项目1", "项目1", "项目1"});
-                textListDialog.setOnItemClickListener(new LTextListDialog.OnItemClickListener() {
-                    @Override
-                    public void onItemClickListener(int position, String s, View view) {
-                        LToastManager.getInstance().showToast(getActivity(), "position:" + position);
-                    }
-                });
-                textListDialog.show();
+                showPopupWindow();
+//                LTextListDialog textListDialog = new LTextListDialog(getActivity());
+//                textListDialog.setData(new String[]{"全部", "项目1", "项目1", "项目1"});
+//                textListDialog.setOnItemClickListener(new LTextListDialog.OnItemClickListener() {
+//                    @Override
+//                    public void onItemClickListener(int position, String s, View view) {
+//                        LToastManager.getInstance().showToast(getActivity(), "position:" + position);
+//                    }
+//                });
+//                textListDialog.show();
 //                LActivityUtils.startActivity(getActivity(), TestGlideViewActivity.class);
 //                LightLoadingDialog lightLoadingDialog = new LightLoadingDialog(getActivity());
 //                lightLoadingDialog.show();
@@ -93,5 +98,18 @@ public class MainActivity extends LActivity<AViewModel, ActivityMainBinding> {
         TestLeakActivity testLeakActivity = TestLeakActivity.list.get(0);
         Log.d("test_basex", "is_destroy:" + testLeakActivity.isDestroyed());
         Log.d("test_basex", "name:" + testLeakActivity.getName());
+    }
+
+    protected void showPopupWindow() {
+        LListPopupWindow lListPopupWindow = new LListPopupWindow(this);
+        List<String> list = new ArrayList<>();
+        list.add("1，撒打算的");
+        list.add("2，撒打算的");
+        list.add("3，撒打算的");
+        list.add("4，撒打算的");
+        lListPopupWindow.setData(list);
+        lListPopupWindow.showAsDropDown(d.showLightDialog, 0, 0);
+
+        lListPopupWindow.setOnItemClickListener((view, position, s) -> LToastManager.getInstance().showToast(MainActivity.this, "位置：" + position));
     }
 }
