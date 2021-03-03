@@ -70,11 +70,11 @@ public class LListPopupWindow extends LPopupWindow<LListPopupwindowBinding> impl
 
     }
 
-    protected int getItemWidth() {
+    public int getItemWidth() {
         return LUtils.dip2px(150);
     }
 
-    protected int getItemHeight() {
+    public int getItemHeight() {
         return LUtils.dip2px(40);
     }
 
@@ -90,6 +90,8 @@ public class LListPopupWindow extends LPopupWindow<LListPopupwindowBinding> impl
     }
 
     public void setData(List<String> list) {
+        int n = list == null ? 0 : list.size();
+        setHeight(n * getItemHeight() + LUtils.dip2px(10));
         proxy.refresh(list, false);
     }
 
