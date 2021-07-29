@@ -1,6 +1,7 @@
 package com.lib.basex.utils;
 
 import android.content.Context;
+import android.os.Environment;
 import android.text.TextUtils;
 
 import com.lib.basex.LApplication;
@@ -9,6 +10,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +21,8 @@ import java.util.List;
 public class LFileUtils {
 
     /**
-     *  获取APP 私有目录
+     * 获取APP 私有目录
+     *
      * @return
      */
     public static String getDir() {
@@ -31,7 +34,7 @@ public class LFileUtils {
     }
 
     public static String getFilename(String path) {
-        if (TextUtils.isEmpty(path)){
+        if (TextUtils.isEmpty(path)) {
             return "";
         }
         int index = path.lastIndexOf("/");
@@ -39,7 +42,7 @@ public class LFileUtils {
     }
 
     public static String getFileExt(String path) {
-        if (path == null){
+        if (path == null) {
             return null;
         }
         int index = path.lastIndexOf(".");
@@ -97,7 +100,7 @@ public class LFileUtils {
                 return false;
             }
         }
-        if (fileDest.isFile()){
+        if (fileDest.isFile()) {
             return false;
         }
 
@@ -120,5 +123,28 @@ public class LFileUtils {
             return name;
         }
         return path.endsWith("/") ? path + name : path + "/" + name;
+    }
+
+    public static void writeFile(String path, String name, boolean append, String content) {
+        try {
+            File dir = new File(path);
+            if (!dir.exists()) {
+                boolean mkdirs = dir.mkdirs();
+                Logger.d("文件夹创建：" + mkdirs);
+            }
+
+            File file = new File(path, name);
+            if (!file.exists()) {
+                boolean newFile = file.createNewFile();
+                Logger.d("文件创建：" + newFile);
+            }
+
+            FileWriter fileWriter = new FileWriter(file, append);
+            fileWriter.append(content);
+            fileWriter.close();
+        } catch (Exception err) {
+            Logger.error(err);
+        }
+
     }
 }
