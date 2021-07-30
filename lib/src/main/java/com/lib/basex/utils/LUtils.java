@@ -3,6 +3,8 @@ package com.lib.basex.utils;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -352,5 +354,20 @@ public class LUtils {
 
     public static String getRandomId() {
         return UUID.randomUUID().toString().replace("-", "");
+    }
+
+    /**
+     * 复制到剪切板
+     *
+     * @param context
+     * @param text
+     */
+    public static void copyToClipboard(Context context, String text) {
+        //获取剪贴板管理器：
+        ClipboardManager cm = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+        // 创建普通字符型ClipData
+        ClipData mClipData = ClipData.newPlainText("Label", text);
+        // 将ClipData内容放到系统剪贴板里。
+        cm.setPrimaryClip(mClipData);
     }
 }
