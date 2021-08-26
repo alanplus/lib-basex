@@ -370,4 +370,12 @@ public class LUtils {
         // 将ClipData内容放到系统剪贴板里。
         cm.setPrimaryClip(mClipData);
     }
+
+    /**
+     * 页面防截屏幕
+     * @param activity
+     */
+    public static void setFlagSecure(@NonNull Activity activity){
+        activity.getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+    }
 }
